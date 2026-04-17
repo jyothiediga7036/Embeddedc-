@@ -1,0 +1,8 @@
+#include<cstdint>
+#include"stm32f407.h"
+volatile uint32_t timer_falg=0;
+volatile uint32_t external_falg=0;
+class timer
+{
+
+};

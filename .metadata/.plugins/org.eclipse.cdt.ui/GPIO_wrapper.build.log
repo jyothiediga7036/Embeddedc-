@@ -1,0 +1,30 @@
+12:54:16 **** Build of configuration Debug for project GPIO_wrapper ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f407vgtx.d" -MT"Startup/startup_stm32f407vgtx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f407vgtx.o" "../Startup/startup_stm32f407vgtx.s"
+arm-none-eabi-g++ "../Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.cpp: In instantiation of 'static void GPIO<Port, pin>::enable_clock() [with Port = GPIO_Port<1073876992>; unsigned char pin = 12]':
+../Src/main.cpp:127:31:   required from 'LED<GPIO_PIN>::LED() [with GPIO_PIN = GPIO<GPIO_Port<1073876992>, 12>]'
+  127 |         GPIO_PIN::enable_clock();
+      |         ~~~~~~~~~~~~~~~~~~~~~~^~
+../Src/main.cpp:165:18:   required from here
+  165 |     LED<LED_PIN> led;
+      |                  ^~~
+../Src/main.cpp:76:9: warning: conversion to void will not access object of type 'volatile long unsigned int'
+   76 |         (void)RCC::AHB1ENR();
+      |         ^~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-g++ -o "GPIO_wrapper.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/mirafra/STM32CubeIDE/workspace_2.1.1/GPIO_wrapper/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPIO_wrapper.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: GPIO_wrapper.elf
+ 
+arm-none-eabi-size  GPIO_wrapper.elf 
+arm-none-eabi-objdump -h -S GPIO_wrapper.elf  > "GPIO_wrapper.list"
+   text	   data	    bss	    dec	    hex	filename
+   1176	      0	   1568	   2744	    ab8	GPIO_wrapper.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPIO_wrapper.list
+ 
+
+12:54:16 Build Finished. 0 errors, 1 warnings. (took 178ms)
+

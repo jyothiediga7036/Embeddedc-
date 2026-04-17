@@ -1,0 +1,6 @@
+1774850382583	Delete resource 'GPIO_modrenapproch'
+1774855755664	Delete resource 'GPIO_STRUCT_modren/Inc/stm32f407vg.h'
+1774856145058	Rename resource 'GPIO_STRUCT_modren'
+1774856707035	Delete resource 'GPIO_header_struct'
+1774858628743	Rename resource 'High_level_abstraction'
+1774933050600	Rename resource 'inheritance_GPIO'

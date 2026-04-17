@@ -1,0 +1,76 @@
+#include <stdint.h>
+
+typedef struct
+{
+    volatile uint32_t MODER; //4 byte 0x00
+    volatile uint32_t OTYPER;// 0x04
+    volatile uint32_t OSPEEDR;
+    volatile uint32_t PUPDR;
+    volatile uint32_t IDR;
+    volatile uint32_t ODR;
+} GPIO_RegDef_t;
+
+typedef struct
+{
+    volatile uint32_t CR;
+    volatile uint32_t PLLCFGR;
+    volatile uint32_t CFGR;
+    volatile uint32_t CIR;
+    volatile uint32_t AHB1RSTR;
+    volatile uint32_t AHB2RSTR;
+    volatile uint32_t AHB3RSTR;
+    uint32_t RESERVED0;
+    volatile uint32_t APB1RSTR;
+    volatile uint32_t APB2RSTR;
+    uint32_t RESERVED1[2];
+    volatile uint32_t AHB1ENR;
+} RCC_RegDef_t;
+
+#define RCC_BASE   0x40023800
+#define GPIOD_BASE 0x40020C00
+
+#define RCC   ((RCC_RegDef_t*) RCC_BASE) // type casting
+#define GPIOD ((GPIO_RegDef_t*) GPIOD_BASE)
+
+class LED
+{
+    GPIO_RegDef_t* GPIOx;
+    uint32_t pin;
+
+public:
+    LED(GPIO_RegDef_t* GPIO, uint32_t p) : GPIOx(GPIO), pin(p)
+    {
+        RCC->AHB1ENR |= (1 << 3);
+        GPIOx->MODER &= ~(3 << (2 * pin));
+        GPIOx->MODER |=  (1 << (2 * pin));
+    }
+
+    void on()
+    {
+        GPIOx->ODR |= (1 << pin);
+    }
+
+    void off()
+    {
+        GPIOx->ODR &= ~(1 << pin);
+    }
+
+    void toggle()
+    {
+        GPIOx->ODR ^= (1 << pin);
+    }
+};
+int main()
+{
+	LED l(GPIOD,13);
+	while(1)
+	{
+		l.toggle();
+		l.on();
+		for(uint32_t i=0;i<3000;i++);
+		l.off();
+		for(uint32_t i=0;i<3000;i++);
+	}
+}
+
+

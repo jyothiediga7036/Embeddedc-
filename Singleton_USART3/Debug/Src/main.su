@@ -1,0 +1,8 @@
+/opt/st/stm32cubeide_2.1.1/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.linux64_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1/arm-none-eabi/thumb/v7e-m+fp/hard/bits/gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+../Src/main.cpp:67:6:void delay()	16	static
+../Src/main.cpp:71:5:int main()	16	static
+../Src/main.cpp:41:21:static singleton<pin>& singleton<pin>::get_instance() [with long unsigned int pin = 12]	8	static,ignoring_inline_asm
+../Src/main.cpp:49:7:void singleton<pin>::USART_write(char) [with long unsigned int pin = 12]	16	static
+../Src/main.cpp:54:7:char singleton<pin>::USART_READ() [with long unsigned int pin = 12]	16	static
+../Src/main.cpp:8:2:singleton<pin>::singleton() [with long unsigned int pin = 12]	16	static
+../Src/main.cpp:11:7:void singleton<pin>::USART_init() [with long unsigned int pin = 12]	16	static

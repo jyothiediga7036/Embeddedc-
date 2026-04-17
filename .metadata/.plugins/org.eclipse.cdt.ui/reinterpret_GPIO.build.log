@@ -1,0 +1,24 @@
+12:54:55 **** Build of configuration Debug for project reinterpret_GPIO ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f407vgtx.d" -MT"Startup/startup_stm32f407vgtx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f407vgtx.o" "../Startup/startup_stm32f407vgtx.s"
+arm-none-eabi-g++ "../Src/main.cpp" -mcpu=cortex-m4 -std=gnu++20 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.cpp: In function 'void delay()':
+../Src/main.cpp:51:54: warning: '++' expression of 'volatile'-qualified type is deprecated [-Wvolatile]
+   51 |     for (volatile std::uint32_t i = 0; i < 100000; ++i)
+      |                                                      ^
+arm-none-eabi-g++ -o "reinterpret_GPIO.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/mirafra/STM32CubeIDE/workspace_2.1.1/High_level_abstraction/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="reinterpret_GPIO.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: reinterpret_GPIO.elf
+ 
+arm-none-eabi-size  reinterpret_GPIO.elf 
+arm-none-eabi-objdump -h -S reinterpret_GPIO.elf  > "reinterpret_GPIO.list"
+   text	   data	    bss	    dec	    hex	filename
+   1048	      0	   1568	   2616	    a38	reinterpret_GPIO.elf
+Finished building: default.size.stdout
+ 
+Finished building: reinterpret_GPIO.list
+ 
+
+12:54:55 Build Finished. 0 errors, 1 warnings. (took 180ms)
+

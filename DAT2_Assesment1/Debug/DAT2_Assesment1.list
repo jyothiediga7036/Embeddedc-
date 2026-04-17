@@ -1,0 +1,816 @@
+
+DAT2_Assesment1.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   00000188  08000000  08000000  00001000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00000508  08000188  08000188  00001188  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000000  08000690  08000698  00001698  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .ARM.extab    00000000  08000690  08000690  00001698  2**0
+                  CONTENTS, READONLY
+  4 .ARM          00000000  08000690  08000690  00001698  2**0
+                  CONTENTS, READONLY
+  5 .preinit_array 00000000  08000690  08000698  00001698  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  08000690  08000690  00001690  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  7 .fini_array   00000004  08000694  08000694  00001694  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  8 .data         00000000  20000000  20000000  00001698  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .ccmram       00000000  10000000  10000000  00001698  2**0
+                  CONTENTS
+ 10 .bss          0000001c  20000000  20000000  00002000  2**2
+                  ALLOC
+ 11 ._user_heap_stack 00000604  2000001c  2000001c  00002000  2**0
+                  ALLOC
+ 12 .ARM.attributes 00000030  00000000  00000000  00001698  2**0
+                  CONTENTS, READONLY
+ 13 .debug_info   00000967  00000000  00000000  000016c8  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 14 .debug_abbrev 000004f7  00000000  00000000  0000202f  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_aranges 000000b8  00000000  00000000  00002528  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_rnglists 00000079  00000000  00000000  000025e0  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_macro  000296b0  00000000  00000000  00002659  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_line   00000d2c  00000000  00000000  0002bd09  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 19 .debug_str    000770fd  00000000  00000000  0002ca35  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 20 .comment      00000043  00000000  00000000  000a3b32  2**0
+                  CONTENTS, READONLY
+ 21 .debug_frame  0000019c  00000000  00000000  000a3b78  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 22 .debug_line_str 00000064  00000000  00000000  000a3d14  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+08000188 <__do_global_dtors_aux>:
+ 8000188:	b510      	push	{r4, lr}
+ 800018a:	4c05      	ldr	r4, [pc, #20]	@ (80001a0 <__do_global_dtors_aux+0x18>)
+ 800018c:	7823      	ldrb	r3, [r4, #0]
+ 800018e:	b933      	cbnz	r3, 800019e <__do_global_dtors_aux+0x16>
+ 8000190:	4b04      	ldr	r3, [pc, #16]	@ (80001a4 <__do_global_dtors_aux+0x1c>)
+ 8000192:	b113      	cbz	r3, 800019a <__do_global_dtors_aux+0x12>
+ 8000194:	4804      	ldr	r0, [pc, #16]	@ (80001a8 <__do_global_dtors_aux+0x20>)
+ 8000196:	f3af 8000 	nop.w
+ 800019a:	2301      	movs	r3, #1
+ 800019c:	7023      	strb	r3, [r4, #0]
+ 800019e:	bd10      	pop	{r4, pc}
+ 80001a0:	20000000 	.word	0x20000000
+ 80001a4:	00000000 	.word	0x00000000
+ 80001a8:	08000678 	.word	0x08000678
+
+080001ac <frame_dummy>:
+ 80001ac:	b508      	push	{r3, lr}
+ 80001ae:	4b03      	ldr	r3, [pc, #12]	@ (80001bc <frame_dummy+0x10>)
+ 80001b0:	b11b      	cbz	r3, 80001ba <frame_dummy+0xe>
+ 80001b2:	4903      	ldr	r1, [pc, #12]	@ (80001c0 <frame_dummy+0x14>)
+ 80001b4:	4803      	ldr	r0, [pc, #12]	@ (80001c4 <frame_dummy+0x18>)
+ 80001b6:	f3af 8000 	nop.w
+ 80001ba:	bd08      	pop	{r3, pc}
+ 80001bc:	00000000 	.word	0x00000000
+ 80001c0:	20000004 	.word	0x20000004
+ 80001c4:	08000678 	.word	0x08000678
+
+080001c8 <_ZN11PerformanceC1Emmmm>:
+#include"Performance.h"
+Performance::Performance(uint32_t g,uint32_t o,uint32_t r,uint32_t b)
+ 80001c8:	b480      	push	{r7}
+ 80001ca:	b085      	sub	sp, #20
+ 80001cc:	af00      	add	r7, sp, #0
+ 80001ce:	60f8      	str	r0, [r7, #12]
+ 80001d0:	60b9      	str	r1, [r7, #8]
+ 80001d2:	607a      	str	r2, [r7, #4]
+ 80001d4:	603b      	str	r3, [r7, #0]
+{
+		green=g;
+ 80001d6:	68fb      	ldr	r3, [r7, #12]
+ 80001d8:	68ba      	ldr	r2, [r7, #8]
+ 80001da:	601a      	str	r2, [r3, #0]
+		orange=o;
+ 80001dc:	68fb      	ldr	r3, [r7, #12]
+ 80001de:	687a      	ldr	r2, [r7, #4]
+ 80001e0:	605a      	str	r2, [r3, #4]
+		red=r;
+ 80001e2:	68fb      	ldr	r3, [r7, #12]
+ 80001e4:	683a      	ldr	r2, [r7, #0]
+ 80001e6:	609a      	str	r2, [r3, #8]
+		blue=b;
+ 80001e8:	68fb      	ldr	r3, [r7, #12]
+ 80001ea:	69ba      	ldr	r2, [r7, #24]
+ 80001ec:	60da      	str	r2, [r3, #12]
+		RCC->AHB1ENR |= (1U<<3) | (1U<<0);
+ 80001ee:	4b29      	ldr	r3, [pc, #164]	@ (8000294 <_ZN11PerformanceC1Emmmm+0xcc>)
+ 80001f0:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 80001f2:	4a28      	ldr	r2, [pc, #160]	@ (8000294 <_ZN11PerformanceC1Emmmm+0xcc>)
+ 80001f4:	f043 0309 	orr.w	r3, r3, #9
+ 80001f8:	6313      	str	r3, [r2, #48]	@ 0x30
+		GPIOD->MODER &= ~((3U<<(green*2)) | (3U<<(orange*2)) | (3U<<(red*2)) | (3U<<(blue*2)));
+ 80001fa:	4b27      	ldr	r3, [pc, #156]	@ (8000298 <_ZN11PerformanceC1Emmmm+0xd0>)
+ 80001fc:	681a      	ldr	r2, [r3, #0]
+ 80001fe:	68fb      	ldr	r3, [r7, #12]
+ 8000200:	681b      	ldr	r3, [r3, #0]
+ 8000202:	005b      	lsls	r3, r3, #1
+ 8000204:	2103      	movs	r1, #3
+ 8000206:	4099      	lsls	r1, r3
+ 8000208:	68fb      	ldr	r3, [r7, #12]
+ 800020a:	685b      	ldr	r3, [r3, #4]
+ 800020c:	005b      	lsls	r3, r3, #1
+ 800020e:	2003      	movs	r0, #3
+ 8000210:	fa00 f303 	lsl.w	r3, r0, r3
+ 8000214:	4319      	orrs	r1, r3
+ 8000216:	68fb      	ldr	r3, [r7, #12]
+ 8000218:	689b      	ldr	r3, [r3, #8]
+ 800021a:	005b      	lsls	r3, r3, #1
+ 800021c:	2003      	movs	r0, #3
+ 800021e:	fa00 f303 	lsl.w	r3, r0, r3
+ 8000222:	4319      	orrs	r1, r3
+ 8000224:	68fb      	ldr	r3, [r7, #12]
+ 8000226:	68db      	ldr	r3, [r3, #12]
+ 8000228:	005b      	lsls	r3, r3, #1
+ 800022a:	2003      	movs	r0, #3
+ 800022c:	fa00 f303 	lsl.w	r3, r0, r3
+ 8000230:	430b      	orrs	r3, r1
+ 8000232:	43db      	mvns	r3, r3
+ 8000234:	4918      	ldr	r1, [pc, #96]	@ (8000298 <_ZN11PerformanceC1Emmmm+0xd0>)
+ 8000236:	4013      	ands	r3, r2
+ 8000238:	600b      	str	r3, [r1, #0]
+		GPIOD->MODER |=  ((1U<<(green*2)) | (1U<<(orange*2)) | (1U<<(red*2)) | (1U<<(blue*2)));
+ 800023a:	4b17      	ldr	r3, [pc, #92]	@ (8000298 <_ZN11PerformanceC1Emmmm+0xd0>)
+ 800023c:	681a      	ldr	r2, [r3, #0]
+ 800023e:	68fb      	ldr	r3, [r7, #12]
+ 8000240:	681b      	ldr	r3, [r3, #0]
+ 8000242:	005b      	lsls	r3, r3, #1
+ 8000244:	2101      	movs	r1, #1
+ 8000246:	4099      	lsls	r1, r3
+ 8000248:	68fb      	ldr	r3, [r7, #12]
+ 800024a:	685b      	ldr	r3, [r3, #4]
+ 800024c:	005b      	lsls	r3, r3, #1
+ 800024e:	2001      	movs	r0, #1
+ 8000250:	fa00 f303 	lsl.w	r3, r0, r3
+ 8000254:	4319      	orrs	r1, r3
+ 8000256:	68fb      	ldr	r3, [r7, #12]
+ 8000258:	689b      	ldr	r3, [r3, #8]
+ 800025a:	005b      	lsls	r3, r3, #1
+ 800025c:	2001      	movs	r0, #1
+ 800025e:	fa00 f303 	lsl.w	r3, r0, r3
+ 8000262:	4319      	orrs	r1, r3
+ 8000264:	68fb      	ldr	r3, [r7, #12]
+ 8000266:	68db      	ldr	r3, [r3, #12]
+ 8000268:	005b      	lsls	r3, r3, #1
+ 800026a:	2001      	movs	r0, #1
+ 800026c:	fa00 f303 	lsl.w	r3, r0, r3
+ 8000270:	430b      	orrs	r3, r1
+ 8000272:	4909      	ldr	r1, [pc, #36]	@ (8000298 <_ZN11PerformanceC1Emmmm+0xd0>)
+ 8000274:	4313      	orrs	r3, r2
+ 8000276:	600b      	str	r3, [r1, #0]
+		GPIOA->MODER &= ~(3U<<0);
+ 8000278:	4b08      	ldr	r3, [pc, #32]	@ (800029c <_ZN11PerformanceC1Emmmm+0xd4>)
+ 800027a:	681b      	ldr	r3, [r3, #0]
+ 800027c:	4a07      	ldr	r2, [pc, #28]	@ (800029c <_ZN11PerformanceC1Emmmm+0xd4>)
+ 800027e:	f023 0303 	bic.w	r3, r3, #3
+ 8000282:	6013      	str	r3, [r2, #0]
+}
+ 8000284:	68fb      	ldr	r3, [r7, #12]
+ 8000286:	4618      	mov	r0, r3
+ 8000288:	3714      	adds	r7, #20
+ 800028a:	46bd      	mov	sp, r7
+ 800028c:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000290:	4770      	bx	lr
+ 8000292:	bf00      	nop
+ 8000294:	40023800 	.word	0x40023800
+ 8000298:	40020c00 	.word	0x40020c00
+ 800029c:	40020000 	.word	0x40020000
+
+080002a0 <_ZN11Performance18Transformer_statusER11Transformer>:
+void Performance::Transformer_status(Transformer& obj)
+{
+ 80002a0:	b580      	push	{r7, lr}
+ 80002a2:	b088      	sub	sp, #32
+ 80002a4:	af00      	add	r7, sp, #0
+ 80002a6:	6078      	str	r0, [r7, #4]
+ 80002a8:	6039      	str	r1, [r7, #0]
+		if(GPIOA->IDR & 1)
+ 80002aa:	4b40      	ldr	r3, [pc, #256]	@ (80003ac <_ZN11Performance18Transformer_statusER11Transformer+0x10c>)
+ 80002ac:	691b      	ldr	r3, [r3, #16]
+ 80002ae:	f003 0301 	and.w	r3, r3, #1
+ 80002b2:	2b00      	cmp	r3, #0
+ 80002b4:	bf14      	ite	ne
+ 80002b6:	2301      	movne	r3, #1
+ 80002b8:	2300      	moveq	r3, #0
+ 80002ba:	b2db      	uxtb	r3, r3
+ 80002bc:	2b00      	cmp	r3, #0
+ 80002be:	d06f      	beq.n	80003a0 <_ZN11Performance18Transformer_statusER11Transformer+0x100>
+		{
+			uint32_t p = obj.power_calculation();
+ 80002c0:	6838      	ldr	r0, [r7, #0]
+ 80002c2:	f000 f8f9 	bl	80004b8 <_ZN11Transformer17power_calculationEv>
+ 80002c6:	6138      	str	r0, [r7, #16]
+			if(p==0)
+ 80002c8:	693b      	ldr	r3, [r7, #16]
+ 80002ca:	2b00      	cmp	r3, #0
+ 80002cc:	d109      	bne.n	80002e2 <_ZN11Performance18Transformer_statusER11Transformer+0x42>
+			{
+				all_off();
+ 80002ce:	6878      	ldr	r0, [r7, #4]
+ 80002d0:	f000 f89e 	bl	8000410 <_ZN11Performance7all_offEv>
+				    on(red);
+ 80002d4:	687b      	ldr	r3, [r7, #4]
+ 80002d6:	689b      	ldr	r3, [r3, #8]
+ 80002d8:	4619      	mov	r1, r3
+ 80002da:	6878      	ldr	r0, [r7, #4]
+ 80002dc:	f000 f868 	bl	80003b0 <_ZN11Performance2onEm>
+				return;
+ 80002e0:	e061      	b.n	80003a6 <_ZN11Performance18Transformer_statusER11Transformer+0x106>
+			}
+
+			if(p<=25)
+ 80002e2:	693b      	ldr	r3, [r7, #16]
+ 80002e4:	2b19      	cmp	r3, #25
+ 80002e6:	d811      	bhi.n	800030c <_ZN11Performance18Transformer_statusER11Transformer+0x6c>
+			{
+				on(blue);
+ 80002e8:	687b      	ldr	r3, [r7, #4]
+ 80002ea:	68db      	ldr	r3, [r3, #12]
+ 80002ec:	4619      	mov	r1, r3
+ 80002ee:	6878      	ldr	r0, [r7, #4]
+ 80002f0:	f000 f85e 	bl	80003b0 <_ZN11Performance2onEm>
+				for(uint32_t i=0;i<50000;i++);
+ 80002f4:	2300      	movs	r3, #0
+ 80002f6:	61fb      	str	r3, [r7, #28]
+ 80002f8:	e002      	b.n	8000300 <_ZN11Performance18Transformer_statusER11Transformer+0x60>
+ 80002fa:	69fb      	ldr	r3, [r7, #28]
+ 80002fc:	3301      	adds	r3, #1
+ 80002fe:	61fb      	str	r3, [r7, #28]
+ 8000300:	69fb      	ldr	r3, [r7, #28]
+ 8000302:	f24c 324f 	movw	r2, #49999	@ 0xc34f
+ 8000306:	4293      	cmp	r3, r2
+ 8000308:	d9f7      	bls.n	80002fa <_ZN11Performance18Transformer_statusER11Transformer+0x5a>
+ 800030a:	e04c      	b.n	80003a6 <_ZN11Performance18Transformer_statusER11Transformer+0x106>
+			}
+			else if(p<=50)
+ 800030c:	693b      	ldr	r3, [r7, #16]
+ 800030e:	2b32      	cmp	r3, #50	@ 0x32
+ 8000310:	d811      	bhi.n	8000336 <_ZN11Performance18Transformer_statusER11Transformer+0x96>
+			{
+				on(green);
+ 8000312:	687b      	ldr	r3, [r7, #4]
+ 8000314:	681b      	ldr	r3, [r3, #0]
+ 8000316:	4619      	mov	r1, r3
+ 8000318:	6878      	ldr	r0, [r7, #4]
+ 800031a:	f000 f849 	bl	80003b0 <_ZN11Performance2onEm>
+				for(uint32_t i=0;i<50000;i++);
+ 800031e:	2300      	movs	r3, #0
+ 8000320:	61bb      	str	r3, [r7, #24]
+ 8000322:	e002      	b.n	800032a <_ZN11Performance18Transformer_statusER11Transformer+0x8a>
+ 8000324:	69bb      	ldr	r3, [r7, #24]
+ 8000326:	3301      	adds	r3, #1
+ 8000328:	61bb      	str	r3, [r7, #24]
+ 800032a:	69bb      	ldr	r3, [r7, #24]
+ 800032c:	f24c 324f 	movw	r2, #49999	@ 0xc34f
+ 8000330:	4293      	cmp	r3, r2
+ 8000332:	d9f7      	bls.n	8000324 <_ZN11Performance18Transformer_statusER11Transformer+0x84>
+ 8000334:	e037      	b.n	80003a6 <_ZN11Performance18Transformer_statusER11Transformer+0x106>
+			}
+			else if(p<=75)
+ 8000336:	693b      	ldr	r3, [r7, #16]
+ 8000338:	2b4b      	cmp	r3, #75	@ 0x4b
+ 800033a:	d811      	bhi.n	8000360 <_ZN11Performance18Transformer_statusER11Transformer+0xc0>
+			{
+				on(orange);
+ 800033c:	687b      	ldr	r3, [r7, #4]
+ 800033e:	685b      	ldr	r3, [r3, #4]
+ 8000340:	4619      	mov	r1, r3
+ 8000342:	6878      	ldr	r0, [r7, #4]
+ 8000344:	f000 f834 	bl	80003b0 <_ZN11Performance2onEm>
+				for(uint32_t i=0;i<50000;i++);
+ 8000348:	2300      	movs	r3, #0
+ 800034a:	617b      	str	r3, [r7, #20]
+ 800034c:	e002      	b.n	8000354 <_ZN11Performance18Transformer_statusER11Transformer+0xb4>
+ 800034e:	697b      	ldr	r3, [r7, #20]
+ 8000350:	3301      	adds	r3, #1
+ 8000352:	617b      	str	r3, [r7, #20]
+ 8000354:	697b      	ldr	r3, [r7, #20]
+ 8000356:	f24c 324f 	movw	r2, #49999	@ 0xc34f
+ 800035a:	4293      	cmp	r3, r2
+ 800035c:	d9f7      	bls.n	800034e <_ZN11Performance18Transformer_statusER11Transformer+0xae>
+ 800035e:	e022      	b.n	80003a6 <_ZN11Performance18Transformer_statusER11Transformer+0x106>
+			}
+			else
+			{
+				on(red);
+ 8000360:	687b      	ldr	r3, [r7, #4]
+ 8000362:	689b      	ldr	r3, [r3, #8]
+ 8000364:	4619      	mov	r1, r3
+ 8000366:	6878      	ldr	r0, [r7, #4]
+ 8000368:	f000 f822 	bl	80003b0 <_ZN11Performance2onEm>
+				for(volatile uint32_t i=0; i<10000; i++);
+ 800036c:	2300      	movs	r3, #0
+ 800036e:	60fb      	str	r3, [r7, #12]
+ 8000370:	e002      	b.n	8000378 <_ZN11Performance18Transformer_statusER11Transformer+0xd8>
+ 8000372:	68fb      	ldr	r3, [r7, #12]
+ 8000374:	3301      	adds	r3, #1
+ 8000376:	60fb      	str	r3, [r7, #12]
+ 8000378:	68fb      	ldr	r3, [r7, #12]
+ 800037a:	f242 720f 	movw	r2, #9999	@ 0x270f
+ 800037e:	4293      	cmp	r3, r2
+ 8000380:	bf94      	ite	ls
+ 8000382:	2301      	movls	r3, #1
+ 8000384:	2300      	movhi	r3, #0
+ 8000386:	b2db      	uxtb	r3, r3
+ 8000388:	2b00      	cmp	r3, #0
+ 800038a:	d1f2      	bne.n	8000372 <_ZN11Performance18Transformer_statusER11Transformer+0xd2>
+				off(red);
+ 800038c:	687b      	ldr	r3, [r7, #4]
+ 800038e:	689b      	ldr	r3, [r3, #8]
+ 8000390:	4619      	mov	r1, r3
+ 8000392:	6878      	ldr	r0, [r7, #4]
+ 8000394:	f000 f824 	bl	80003e0 <_ZN11Performance3offEm>
+				obj.reset_power();
+ 8000398:	6838      	ldr	r0, [r7, #0]
+ 800039a:	f000 f8b1 	bl	8000500 <_ZN11Transformer11reset_powerEv>
+ 800039e:	e002      	b.n	80003a6 <_ZN11Performance18Transformer_statusER11Transformer+0x106>
+			}
+		}
+		else
+		{
+			all_off();
+ 80003a0:	6878      	ldr	r0, [r7, #4]
+ 80003a2:	f000 f835 	bl	8000410 <_ZN11Performance7all_offEv>
+		}
+}
+ 80003a6:	3720      	adds	r7, #32
+ 80003a8:	46bd      	mov	sp, r7
+ 80003aa:	bd80      	pop	{r7, pc}
+ 80003ac:	40020000 	.word	0x40020000
+
+080003b0 <_ZN11Performance2onEm>:
+void Performance::on(uint32_t pin)
+{
+ 80003b0:	b480      	push	{r7}
+ 80003b2:	b083      	sub	sp, #12
+ 80003b4:	af00      	add	r7, sp, #0
+ 80003b6:	6078      	str	r0, [r7, #4]
+ 80003b8:	6039      	str	r1, [r7, #0]
+		GPIOD->ODR|=(1<<pin);
+ 80003ba:	4b08      	ldr	r3, [pc, #32]	@ (80003dc <_ZN11Performance2onEm+0x2c>)
+ 80003bc:	695b      	ldr	r3, [r3, #20]
+ 80003be:	2101      	movs	r1, #1
+ 80003c0:	683a      	ldr	r2, [r7, #0]
+ 80003c2:	fa01 f202 	lsl.w	r2, r1, r2
+ 80003c6:	4611      	mov	r1, r2
+ 80003c8:	4a04      	ldr	r2, [pc, #16]	@ (80003dc <_ZN11Performance2onEm+0x2c>)
+ 80003ca:	430b      	orrs	r3, r1
+ 80003cc:	6153      	str	r3, [r2, #20]
+}
+ 80003ce:	bf00      	nop
+ 80003d0:	370c      	adds	r7, #12
+ 80003d2:	46bd      	mov	sp, r7
+ 80003d4:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80003d8:	4770      	bx	lr
+ 80003da:	bf00      	nop
+ 80003dc:	40020c00 	.word	0x40020c00
+
+080003e0 <_ZN11Performance3offEm>:
+void Performance::off(uint32_t pin)
+{
+ 80003e0:	b480      	push	{r7}
+ 80003e2:	b083      	sub	sp, #12
+ 80003e4:	af00      	add	r7, sp, #0
+ 80003e6:	6078      	str	r0, [r7, #4]
+ 80003e8:	6039      	str	r1, [r7, #0]
+		GPIOD->ODR&=~(1<<pin);
+ 80003ea:	4b08      	ldr	r3, [pc, #32]	@ (800040c <_ZN11Performance3offEm+0x2c>)
+ 80003ec:	695b      	ldr	r3, [r3, #20]
+ 80003ee:	2101      	movs	r1, #1
+ 80003f0:	683a      	ldr	r2, [r7, #0]
+ 80003f2:	fa01 f202 	lsl.w	r2, r1, r2
+ 80003f6:	43d2      	mvns	r2, r2
+ 80003f8:	4611      	mov	r1, r2
+ 80003fa:	4a04      	ldr	r2, [pc, #16]	@ (800040c <_ZN11Performance3offEm+0x2c>)
+ 80003fc:	400b      	ands	r3, r1
+ 80003fe:	6153      	str	r3, [r2, #20]
+}
+ 8000400:	bf00      	nop
+ 8000402:	370c      	adds	r7, #12
+ 8000404:	46bd      	mov	sp, r7
+ 8000406:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800040a:	4770      	bx	lr
+ 800040c:	40020c00 	.word	0x40020c00
+
+08000410 <_ZN11Performance7all_offEv>:
+void Performance::all_off()
+{
+ 8000410:	b480      	push	{r7}
+ 8000412:	b083      	sub	sp, #12
+ 8000414:	af00      	add	r7, sp, #0
+ 8000416:	6078      	str	r0, [r7, #4]
+		GPIOD->ODR&=~(1<<green);
+ 8000418:	4b1a      	ldr	r3, [pc, #104]	@ (8000484 <_ZN11Performance7all_offEv+0x74>)
+ 800041a:	695b      	ldr	r3, [r3, #20]
+ 800041c:	687a      	ldr	r2, [r7, #4]
+ 800041e:	6812      	ldr	r2, [r2, #0]
+ 8000420:	2101      	movs	r1, #1
+ 8000422:	fa01 f202 	lsl.w	r2, r1, r2
+ 8000426:	43d2      	mvns	r2, r2
+ 8000428:	4611      	mov	r1, r2
+ 800042a:	4a16      	ldr	r2, [pc, #88]	@ (8000484 <_ZN11Performance7all_offEv+0x74>)
+ 800042c:	400b      	ands	r3, r1
+ 800042e:	6153      	str	r3, [r2, #20]
+		GPIOD->ODR&=~(1<<orange);
+ 8000430:	4b14      	ldr	r3, [pc, #80]	@ (8000484 <_ZN11Performance7all_offEv+0x74>)
+ 8000432:	695b      	ldr	r3, [r3, #20]
+ 8000434:	687a      	ldr	r2, [r7, #4]
+ 8000436:	6852      	ldr	r2, [r2, #4]
+ 8000438:	2101      	movs	r1, #1
+ 800043a:	fa01 f202 	lsl.w	r2, r1, r2
+ 800043e:	43d2      	mvns	r2, r2
+ 8000440:	4611      	mov	r1, r2
+ 8000442:	4a10      	ldr	r2, [pc, #64]	@ (8000484 <_ZN11Performance7all_offEv+0x74>)
+ 8000444:	400b      	ands	r3, r1
+ 8000446:	6153      	str	r3, [r2, #20]
+		GPIOD->ODR&=~(1<<red);
+ 8000448:	4b0e      	ldr	r3, [pc, #56]	@ (8000484 <_ZN11Performance7all_offEv+0x74>)
+ 800044a:	695b      	ldr	r3, [r3, #20]
+ 800044c:	687a      	ldr	r2, [r7, #4]
+ 800044e:	6892      	ldr	r2, [r2, #8]
+ 8000450:	2101      	movs	r1, #1
+ 8000452:	fa01 f202 	lsl.w	r2, r1, r2
+ 8000456:	43d2      	mvns	r2, r2
+ 8000458:	4611      	mov	r1, r2
+ 800045a:	4a0a      	ldr	r2, [pc, #40]	@ (8000484 <_ZN11Performance7all_offEv+0x74>)
+ 800045c:	400b      	ands	r3, r1
+ 800045e:	6153      	str	r3, [r2, #20]
+		GPIOD->ODR&=~(1<<blue);
+ 8000460:	4b08      	ldr	r3, [pc, #32]	@ (8000484 <_ZN11Performance7all_offEv+0x74>)
+ 8000462:	695b      	ldr	r3, [r3, #20]
+ 8000464:	687a      	ldr	r2, [r7, #4]
+ 8000466:	68d2      	ldr	r2, [r2, #12]
+ 8000468:	2101      	movs	r1, #1
+ 800046a:	fa01 f202 	lsl.w	r2, r1, r2
+ 800046e:	43d2      	mvns	r2, r2
+ 8000470:	4611      	mov	r1, r2
+ 8000472:	4a04      	ldr	r2, [pc, #16]	@ (8000484 <_ZN11Performance7all_offEv+0x74>)
+ 8000474:	400b      	ands	r3, r1
+ 8000476:	6153      	str	r3, [r2, #20]
+}
+ 8000478:	bf00      	nop
+ 800047a:	370c      	adds	r7, #12
+ 800047c:	46bd      	mov	sp, r7
+ 800047e:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000482:	4770      	bx	lr
+ 8000484:	40020c00 	.word	0x40020c00
+
+08000488 <_ZN11TransformerC1Emmm>:
+#include "Transformer.h"
+Transformer::Transformer(uint32_t v, uint32_t i, uint32_t p)
+ 8000488:	b480      	push	{r7}
+ 800048a:	b085      	sub	sp, #20
+ 800048c:	af00      	add	r7, sp, #0
+ 800048e:	60f8      	str	r0, [r7, #12]
+ 8000490:	60b9      	str	r1, [r7, #8]
+ 8000492:	607a      	str	r2, [r7, #4]
+ 8000494:	603b      	str	r3, [r7, #0]
+{
+		voltage=v;
+ 8000496:	68fb      	ldr	r3, [r7, #12]
+ 8000498:	68ba      	ldr	r2, [r7, #8]
+ 800049a:	601a      	str	r2, [r3, #0]
+		current=i;
+ 800049c:	68fb      	ldr	r3, [r7, #12]
+ 800049e:	687a      	ldr	r2, [r7, #4]
+ 80004a0:	605a      	str	r2, [r3, #4]
+		power=p;
+ 80004a2:	68fb      	ldr	r3, [r7, #12]
+ 80004a4:	683a      	ldr	r2, [r7, #0]
+ 80004a6:	609a      	str	r2, [r3, #8]
+}
+ 80004a8:	68fb      	ldr	r3, [r7, #12]
+ 80004aa:	4618      	mov	r0, r3
+ 80004ac:	3714      	adds	r7, #20
+ 80004ae:	46bd      	mov	sp, r7
+ 80004b0:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80004b4:	4770      	bx	lr
+	...
+
+080004b8 <_ZN11Transformer17power_calculationEv>:
+uint32_t Transformer::power_calculation()
+{
+ 80004b8:	b480      	push	{r7}
+ 80004ba:	b085      	sub	sp, #20
+ 80004bc:	af00      	add	r7, sp, #0
+ 80004be:	6078      	str	r0, [r7, #4]
+		power=(voltage*current);
+ 80004c0:	687b      	ldr	r3, [r7, #4]
+ 80004c2:	681b      	ldr	r3, [r3, #0]
+ 80004c4:	687a      	ldr	r2, [r7, #4]
+ 80004c6:	6852      	ldr	r2, [r2, #4]
+ 80004c8:	fb03 f202 	mul.w	r2, r3, r2
+ 80004cc:	687b      	ldr	r3, [r7, #4]
+ 80004ce:	609a      	str	r2, [r3, #8]
+		uint32_t p=(power*100)/200;
+ 80004d0:	687b      	ldr	r3, [r7, #4]
+ 80004d2:	689b      	ldr	r3, [r3, #8]
+ 80004d4:	2264      	movs	r2, #100	@ 0x64
+ 80004d6:	fb02 f303 	mul.w	r3, r2, r3
+ 80004da:	4a08      	ldr	r2, [pc, #32]	@ (80004fc <_ZN11Transformer17power_calculationEv+0x44>)
+ 80004dc:	fba2 2303 	umull	r2, r3, r2, r3
+ 80004e0:	099b      	lsrs	r3, r3, #6
+ 80004e2:	60fb      	str	r3, [r7, #12]
+		if(p>100)
+ 80004e4:	68fb      	ldr	r3, [r7, #12]
+ 80004e6:	2b64      	cmp	r3, #100	@ 0x64
+ 80004e8:	d901      	bls.n	80004ee <_ZN11Transformer17power_calculationEv+0x36>
+			return 0;
+ 80004ea:	2300      	movs	r3, #0
+ 80004ec:	e000      	b.n	80004f0 <_ZN11Transformer17power_calculationEv+0x38>
+
+		return p;
+ 80004ee:	68fb      	ldr	r3, [r7, #12]
+}
+ 80004f0:	4618      	mov	r0, r3
+ 80004f2:	3714      	adds	r7, #20
+ 80004f4:	46bd      	mov	sp, r7
+ 80004f6:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80004fa:	4770      	bx	lr
+ 80004fc:	51eb851f 	.word	0x51eb851f
+
+08000500 <_ZN11Transformer11reset_powerEv>:
+void Transformer::reset_power()
+{
+ 8000500:	b480      	push	{r7}
+ 8000502:	b083      	sub	sp, #12
+ 8000504:	af00      	add	r7, sp, #0
+ 8000506:	6078      	str	r0, [r7, #4]
+		power = 0;
+ 8000508:	687b      	ldr	r3, [r7, #4]
+ 800050a:	2200      	movs	r2, #0
+ 800050c:	609a      	str	r2, [r3, #8]
+		voltage = 0;
+ 800050e:	687b      	ldr	r3, [r7, #4]
+ 8000510:	2200      	movs	r2, #0
+ 8000512:	601a      	str	r2, [r3, #0]
+		current = 0;
+ 8000514:	687b      	ldr	r3, [r7, #4]
+ 8000516:	2200      	movs	r2, #0
+ 8000518:	605a      	str	r2, [r3, #4]
+		power = 0;
+ 800051a:	687b      	ldr	r3, [r7, #4]
+ 800051c:	2200      	movs	r2, #0
+ 800051e:	609a      	str	r2, [r3, #8]
+}
+ 8000520:	bf00      	nop
+ 8000522:	370c      	adds	r7, #12
+ 8000524:	46bd      	mov	sp, r7
+ 8000526:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800052a:	4770      	bx	lr
+
+0800052c <main>:
+#include<stdint.h>
+#include "stm32f407.h"
+#include "Transformer.h"
+#include "Performance.h"
+int main()
+{
+ 800052c:	b580      	push	{r7, lr}
+ 800052e:	b096      	sub	sp, #88	@ 0x58
+ 8000530:	af02      	add	r7, sp, #8
+	Transformer t(12,5);     // 60w ->30%
+ 8000532:	f107 0044 	add.w	r0, r7, #68	@ 0x44
+ 8000536:	2300      	movs	r3, #0
+ 8000538:	2205      	movs	r2, #5
+ 800053a:	210c      	movs	r1, #12
+ 800053c:	f7ff ffa4 	bl	8000488 <_ZN11TransformerC1Emmm>
+	Performance p(12,13,14,15);
+ 8000540:	f107 0034 	add.w	r0, r7, #52	@ 0x34
+ 8000544:	230f      	movs	r3, #15
+ 8000546:	9300      	str	r3, [sp, #0]
+ 8000548:	230e      	movs	r3, #14
+ 800054a:	220d      	movs	r2, #13
+ 800054c:	210c      	movs	r1, #12
+ 800054e:	f7ff fe3b 	bl	80001c8 <_ZN11PerformanceC1Emmmm>
+	Transformer t1(10, 4);   // p= 40W->20%
+ 8000552:	f107 0028 	add.w	r0, r7, #40	@ 0x28
+ 8000556:	2300      	movs	r3, #0
+ 8000558:	2204      	movs	r2, #4
+ 800055a:	210a      	movs	r1, #10
+ 800055c:	f7ff ff94 	bl	8000488 <_ZN11TransformerC1Emmm>
+	Transformer t2(10, 10);  // 100W -> 50%
+ 8000560:	f107 001c 	add.w	r0, r7, #28
+ 8000564:	2300      	movs	r3, #0
+ 8000566:	220a      	movs	r2, #10
+ 8000568:	210a      	movs	r1, #10
+ 800056a:	f7ff ff8d 	bl	8000488 <_ZN11TransformerC1Emmm>
+	Transformer t3(12, 7);   // 84W  -> 42%
+ 800056e:	f107 0010 	add.w	r0, r7, #16
+ 8000572:	2300      	movs	r3, #0
+ 8000574:	2207      	movs	r2, #7
+ 8000576:	210c      	movs	r1, #12
+ 8000578:	f7ff ff86 	bl	8000488 <_ZN11TransformerC1Emmm>
+	Transformer t4(20, 8);   // 160W -> 80%
+ 800057c:	1d38      	adds	r0, r7, #4
+ 800057e:	2300      	movs	r3, #0
+ 8000580:	2208      	movs	r2, #8
+ 8000582:	2114      	movs	r1, #20
+ 8000584:	f7ff ff80 	bl	8000488 <_ZN11TransformerC1Emmm>
+
+	while(1)
+	{
+		p.Transformer_status(t);
+ 8000588:	f107 0244 	add.w	r2, r7, #68	@ 0x44
+ 800058c:	f107 0334 	add.w	r3, r7, #52	@ 0x34
+ 8000590:	4611      	mov	r1, r2
+ 8000592:	4618      	mov	r0, r3
+ 8000594:	f7ff fe84 	bl	80002a0 <_ZN11Performance18Transformer_statusER11Transformer>
+		p.Transformer_status(t1);
+ 8000598:	f107 0228 	add.w	r2, r7, #40	@ 0x28
+ 800059c:	f107 0334 	add.w	r3, r7, #52	@ 0x34
+ 80005a0:	4611      	mov	r1, r2
+ 80005a2:	4618      	mov	r0, r3
+ 80005a4:	f7ff fe7c 	bl	80002a0 <_ZN11Performance18Transformer_statusER11Transformer>
+		p.Transformer_status(t2);
+ 80005a8:	f107 021c 	add.w	r2, r7, #28
+ 80005ac:	f107 0334 	add.w	r3, r7, #52	@ 0x34
+ 80005b0:	4611      	mov	r1, r2
+ 80005b2:	4618      	mov	r0, r3
+ 80005b4:	f7ff fe74 	bl	80002a0 <_ZN11Performance18Transformer_statusER11Transformer>
+		p.Transformer_status(t3);
+ 80005b8:	f107 0210 	add.w	r2, r7, #16
+ 80005bc:	f107 0334 	add.w	r3, r7, #52	@ 0x34
+ 80005c0:	4611      	mov	r1, r2
+ 80005c2:	4618      	mov	r0, r3
+ 80005c4:	f7ff fe6c 	bl	80002a0 <_ZN11Performance18Transformer_statusER11Transformer>
+		p.Transformer_status(t4);
+ 80005c8:	1d3a      	adds	r2, r7, #4
+ 80005ca:	f107 0334 	add.w	r3, r7, #52	@ 0x34
+ 80005ce:	4611      	mov	r1, r2
+ 80005d0:	4618      	mov	r0, r3
+ 80005d2:	f7ff fe65 	bl	80002a0 <_ZN11Performance18Transformer_statusER11Transformer>
+		p.Transformer_status(t);
+ 80005d6:	bf00      	nop
+ 80005d8:	e7d6      	b.n	8000588 <main+0x5c>
+	...
+
+080005dc <Reset_Handler>:
+
+  .section .text.Reset_Handler
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+  ldr   r0, =_estack
+ 80005dc:	480d      	ldr	r0, [pc, #52]	@ (8000614 <LoopForever+0x2>)
+  mov   sp, r0          /* set stack pointer */
+ 80005de:	4685      	mov	sp, r0
+/* Call the clock system initialization function.*/
+  bl  SystemInit
+ 80005e0:	f3af 8000 	nop.w
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 80005e4:	480c      	ldr	r0, [pc, #48]	@ (8000618 <LoopForever+0x6>)
+  ldr r1, =_edata
+ 80005e6:	490d      	ldr	r1, [pc, #52]	@ (800061c <LoopForever+0xa>)
+  ldr r2, =_sidata
+ 80005e8:	4a0d      	ldr	r2, [pc, #52]	@ (8000620 <LoopForever+0xe>)
+  movs r3, #0
+ 80005ea:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 80005ec:	e002      	b.n	80005f4 <LoopCopyDataInit>
+
+080005ee <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 80005ee:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 80005f0:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 80005f2:	3304      	adds	r3, #4
+
+080005f4 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 80005f4:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 80005f6:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 80005f8:	d3f9      	bcc.n	80005ee <CopyDataInit>
+
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 80005fa:	4a0a      	ldr	r2, [pc, #40]	@ (8000624 <LoopForever+0x12>)
+  ldr r4, =_ebss
+ 80005fc:	4c0a      	ldr	r4, [pc, #40]	@ (8000628 <LoopForever+0x16>)
+  movs r3, #0
+ 80005fe:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 8000600:	e001      	b.n	8000606 <LoopFillZerobss>
+
+08000602 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 8000602:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 8000604:	3204      	adds	r2, #4
+
+08000606 <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 8000606:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 8000608:	d3fb      	bcc.n	8000602 <FillZerobss>
+
+
+/* Call static constructors */
+  bl __libc_init_array
+ 800060a:	f000 f811 	bl	8000630 <__libc_init_array>
+/* Call the application's entry point.*/
+
+  bl main
+ 800060e:	f7ff ff8d 	bl	800052c <main>
+
+08000612 <LoopForever>:
+
+LoopForever:
+  b LoopForever
+ 8000612:	e7fe      	b.n	8000612 <LoopForever>
+  ldr   r0, =_estack
+ 8000614:	20020000 	.word	0x20020000
+  ldr r0, =_sdata
+ 8000618:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 800061c:	20000000 	.word	0x20000000
+  ldr r2, =_sidata
+ 8000620:	08000698 	.word	0x08000698
+  ldr r2, =_sbss
+ 8000624:	20000000 	.word	0x20000000
+  ldr r4, =_ebss
+ 8000628:	2000001c 	.word	0x2000001c
+
+0800062c <ADC_IRQHandler>:
+ * @retval : None
+*/
+  .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 800062c:	e7fe      	b.n	800062c <ADC_IRQHandler>
+	...
+
+08000630 <__libc_init_array>:
+ 8000630:	b570      	push	{r4, r5, r6, lr}
+ 8000632:	4b0d      	ldr	r3, [pc, #52]	@ (8000668 <__libc_init_array+0x38>)
+ 8000634:	4d0d      	ldr	r5, [pc, #52]	@ (800066c <__libc_init_array+0x3c>)
+ 8000636:	1b5b      	subs	r3, r3, r5
+ 8000638:	109c      	asrs	r4, r3, #2
+ 800063a:	2600      	movs	r6, #0
+ 800063c:	42a6      	cmp	r6, r4
+ 800063e:	d109      	bne.n	8000654 <__libc_init_array+0x24>
+ 8000640:	f000 f81a 	bl	8000678 <_init>
+ 8000644:	4d0a      	ldr	r5, [pc, #40]	@ (8000670 <__libc_init_array+0x40>)
+ 8000646:	4b0b      	ldr	r3, [pc, #44]	@ (8000674 <__libc_init_array+0x44>)
+ 8000648:	1b5b      	subs	r3, r3, r5
+ 800064a:	109c      	asrs	r4, r3, #2
+ 800064c:	2600      	movs	r6, #0
+ 800064e:	42a6      	cmp	r6, r4
+ 8000650:	d105      	bne.n	800065e <__libc_init_array+0x2e>
+ 8000652:	bd70      	pop	{r4, r5, r6, pc}
+ 8000654:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000658:	4798      	blx	r3
+ 800065a:	3601      	adds	r6, #1
+ 800065c:	e7ee      	b.n	800063c <__libc_init_array+0xc>
+ 800065e:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000662:	4798      	blx	r3
+ 8000664:	3601      	adds	r6, #1
+ 8000666:	e7f2      	b.n	800064e <__libc_init_array+0x1e>
+ 8000668:	08000690 	.word	0x08000690
+ 800066c:	08000690 	.word	0x08000690
+ 8000670:	08000690 	.word	0x08000690
+ 8000674:	08000694 	.word	0x08000694
+
+08000678 <_init>:
+ 8000678:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800067a:	bf00      	nop
+ 800067c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800067e:	bc08      	pop	{r3}
+ 8000680:	469e      	mov	lr, r3
+ 8000682:	4770      	bx	lr
+
+08000684 <_fini>:
+ 8000684:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000686:	bf00      	nop
+ 8000688:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800068a:	bc08      	pop	{r3}
+ 800068c:	469e      	mov	lr, r3
+ 800068e:	4770      	bx	lr

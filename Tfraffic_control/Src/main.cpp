@@ -1,0 +1,126 @@
+#include<cstdint>
+#include"stm32f407.h"
+volatile uint32_t timer_flag=0;
+volatile uint32_t external_flag=0;
+class timer
+{
+public:
+	static void timer_init()
+	{
+		RCC->APB1ENR|=(1<<0); // TIM2
+		TIM2->PSC=16000-1;
+		TIM2->ARR=1000-1;
+		TIM2->CNT=0;
+		TIM2->CR1=(1<<0);
+		TIM2->DIER |= (1<<0);
+		volatile uint32_t *piser=(volatile uint32_t*)(0xE000E100);
+		*piser|=(1<<28);  //NVIC
+	}
+	static void gpio_inti()
+	{
+		RCC->AHB1ENR|=(1<<3);
+		for(int i=12;i<15;i++)
+		{
+			GPIOD->MODER&=~(3<<(i*2));
+			GPIOD->MODER|=(1<<(i*2));
+		}
+	}
+	static void traffic_control()
+	{
+	      static uint32_t counter = 0;
+	      static uint32_t state = 0;
+	      counter++;
+	      if(state == 0)   // RED
+	      {
+	           GPIOD->ODR = (1<<14);
+
+	            if(counter == 5)
+	            {
+	                state = 1;
+	                counter = 0;
+	            }
+	        }
+	        else if(state == 1) // GREEN
+	        {
+	            GPIOD->ODR = (1<<12);
+
+	            if(counter == 5)
+	            {
+	                state = 2;
+	                counter = 0;
+	            }
+	        }
+	        else if(state == 2) // YELLOW
+	        {
+	            GPIOD->ODR = (1<<13);
+
+	            if(counter == 2)
+	            {
+	                state = 0;
+	                counter = 0;
+	            }
+	        }
+	  }
+
+};
+extern "C" void TIM2_IRQHandler(void)
+{
+	if(TIM2->SR&(1<<0))  // check timer overflow
+	{
+		timer_flag=1;   // update flag
+		TIM2->SR&=~(1<<0);   // clear
+	}
+}
+class external
+{
+public:
+	static void external_init()
+	{
+		RCC->AHB1ENR |= (1 << 0);   // GPIOA
+		RCC->APB2ENR |= (1 << 14);  // SYSCFG
+		GPIOA->MODER &= ~(3 << (0 * 2));
+
+		GPIOA->PUPDR &= ~(3 << (0 * 2));
+	    GPIOA->PUPDR |=  (2 << (0 * 2));  // Pull-down
+
+	    SYSCFG->EXTICR[0] &= ~(0xF << 0);  // 0000 = PA0
+		EXTI->RTSR |= (1 << 0);
+
+		EXTI->IMR |= (1 << 0);  //
+
+		    /* NVIC Enable (IRQ6 for EXTI0) */
+		    //*((volatile uint32_t*)0xE000E100) |= (1 << 6);  //EXTI0_IRQn= 6,  /!< EXTI Line0 Interrupt
+		    volatile uint32_t*piser=((volatile uint32_t*)(0xE000E100)); // NVIC_ISER
+		    *piser|=(1<<6);
+	}
+
+};
+extern "C" void EXTI0_IRQHandler(void)
+{
+    if (EXTI->PR & (1 <<0))  // / test triggered occur or not 1-> occur 0-> not occure
+    {
+        external_flag=1;
+
+        EXTI->PR |= (1 <<0); // Clear pending
+    }
+}
+int main()
+{
+	timer::timer_init();
+	external::external_init();
+	timer::gpio_inti();
+	while(1)
+	{
+		if(timer_flag)
+		{
+			timer_flag=0;
+			timer::traffic_control();
+		}
+		if(external_flag)
+		{
+			external_flag=0;
+			GPIOD->ODR|=(1<<14);
+			for(volatile uint32_t i=0;i<500000;i++);
+		}
+	}
+}

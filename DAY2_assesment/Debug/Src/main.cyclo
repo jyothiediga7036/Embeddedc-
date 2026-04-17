@@ -1,0 +1,9 @@
+../Src/main.cpp:9:2:Transformer::Transformer(uint32_t, uint32_t, uint32_t)	1
+../Src/main.cpp:15:11:uint32_t Transformer::power_calculation()	2
+../Src/main.cpp:24:7:void Transformer::reset_power()	1
+../Src/main.cpp:40:2:Performance::Performance(uint32_t, uint32_t, uint32_t, uint32_t)	1
+../Src/main.cpp:51:7:void Performance::Transformer_status(Transformer&)	12
+../Src/main.cpp:91:7:void Performance::on(uint32_t)	1
+../Src/main.cpp:95:7:void Performance::off(uint32_t)	1
+../Src/main.cpp:99:7:void Performance::all_off()	1
+../Src/main.cpp:107:5:int main()	1

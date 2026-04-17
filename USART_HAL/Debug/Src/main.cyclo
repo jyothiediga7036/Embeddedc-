@@ -1,0 +1,5 @@
+../Src/main.cpp:23:6:void USART_init(USART_Handle*)	10
+../Src/main.cpp:69:6:void USART_write(USART_Handle*, uint8_t)	3
+../Src/main.cpp:75:6:void delay()	2
+../Src/main.cpp:79:9:uint8_t USART_read(USART_Handle*)	2
+../Src/main.cpp:85:5:int main()	2

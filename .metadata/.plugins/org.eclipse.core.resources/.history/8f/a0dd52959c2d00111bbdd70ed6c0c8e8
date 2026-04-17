@@ -1,0 +1,11 @@
+#include<cstdint>
+#include"stm32f407.h"
+void init();
+int main()
+{
+	init();
+}
+void init()
+{
+	RCC->APB1ENR|-
+}

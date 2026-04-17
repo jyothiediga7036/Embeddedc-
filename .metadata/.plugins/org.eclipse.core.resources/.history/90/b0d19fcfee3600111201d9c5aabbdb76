@@ -1,0 +1,23 @@
+#include<cstdint>
+#include"stm32f407.h"
+class friend_functon
+{
+	void gipo_ini()
+	{
+
+
+		for(uint32_t i=12;i<=15;i++)
+		{
+			GPIOD->MODER&=(3<<(i*2));
+			GPIOD->MODER|=(2<<(i*2));
+		}
+
+		RCC->AHB1ENR|=(1<<0);
+	}
+public:
+
+};
+int main()
+{
+
+}

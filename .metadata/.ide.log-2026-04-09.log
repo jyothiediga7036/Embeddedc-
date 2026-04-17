@@ -1,0 +1,12 @@
+2026-04-09 09:15:48,702 [INFO] Activator:176 - 
+
+
+2026-04-09 09:15:48,707 [INFO] Activator:177 - !SESSION log4j initialized
+2026-04-09 09:15:54,562 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2026-04-09 09:41:51,372 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=false
+2026-04-09 09:42:22,191 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] StartTraceHandler.execute(), success : Collect=true
+2026-04-09 12:14:20,437 [ERROR] AdobePublisher:162 - Exception while opening the connection: java.net.SocketTimeoutException: Read timed out
+2026-04-09 12:14:20,438 [ERROR] AdobePublisher:162 - Exception while opening the connection: java.net.SocketTimeoutException: Read timed out
+2026-04-09 12:14:20,438 [ERROR] AdobePublisher:162 - Exception while opening the connection: java.net.SocketTimeoutException: Read timed out
+2026-04-09 12:14:20,439 [ERROR] AdobePublisher:162 - Exception while opening the connection: java.net.SocketTimeoutException: Read timed out
+2026-04-09 12:14:20,439 [ERROR] AdobePublisher:162 - Exception while opening the connection: java.net.SocketTimeoutException: Read timed out

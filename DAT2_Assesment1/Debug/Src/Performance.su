@@ -1,0 +1,5 @@
+../Src/Performance.cpp:2:1:Performance::Performance(uint32_t, uint32_t, uint32_t, uint32_t)	24	static
+../Src/Performance.cpp:13:6:void Performance::Transformer_status(Transformer&)	40	static
+../Src/Performance.cpp:53:6:void Performance::on(uint32_t)	16	static
+../Src/Performance.cpp:57:6:void Performance::off(uint32_t)	16	static
+../Src/Performance.cpp:61:6:void Performance::all_off()	16	static

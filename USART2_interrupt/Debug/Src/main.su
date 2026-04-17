@@ -1,0 +1,5 @@
+../Src/main.cpp:10:5:int main()	8	static
+../Src/main.cpp:21:6:void GPIO_Init()	4	static
+../Src/main.cpp:39:6:void USART2_Init()	16	static
+../Src/main.cpp:55:6:void USART2_write(uint8_t)	16	static
+../Src/main.cpp:61:17:void USART2_IRQHandler()	4	static

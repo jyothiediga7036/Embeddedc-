@@ -1,0 +1,29 @@
+12:54:16 **** Build of configuration Debug for project GPIO_Modren ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f407vgtx.d" -MT"Startup/startup_stm32f407vgtx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f407vgtx.o" "../Startup/startup_stm32f407vgtx.s"
+arm-none-eabi-g++ "../Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.cpp:13:1: warning: inline variables are only available with '-std=c++17' or '-std=gnu++17' [-Wc++17-extensions]
+   13 | inline volatile std::uint32_t& RCC_AHB1ENR =*reinterpret_cast<volatile std::uint32_t*>(RCC_AHB1ENR_ADDR);
+      | ^~~~~~
+../Src/main.cpp:15:1: warning: inline variables are only available with '-std=c++17' or '-std=gnu++17' [-Wc++17-extensions]
+   15 | inline volatile std::uint32_t& GPIOD_MODER =*reinterpret_cast<volatile std::uint32_t*>(GPIOD_MODER_ADDR);
+      | ^~~~~~
+../Src/main.cpp:17:1: warning: inline variables are only available with '-std=c++17' or '-std=gnu++17' [-Wc++17-extensions]
+   17 | inline volatile std::uint32_t& GPIOD_ODR =*reinterpret_cast<volatile std::uint32_t*>(GPIOD_ODR_ADDR);
+      | ^~~~~~
+arm-none-eabi-g++ -o "GPIO_Modren.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/mirafra/STM32CubeIDE/workspace_2.1.1/GPIO_Modren/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="GPIO_Modren.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: GPIO_Modren.elf
+ 
+arm-none-eabi-size  GPIO_Modren.elf 
+arm-none-eabi-objdump -h -S GPIO_Modren.elf  > "GPIO_Modren.list"
+   text	   data	    bss	    dec	    hex	filename
+    948	      0	   1568	   2516	    9d4	GPIO_Modren.elf
+Finished building: default.size.stdout
+ 
+Finished building: GPIO_Modren.list
+ 
+
+12:54:16 Build Finished. 0 errors, 3 warnings. (took 177ms)
+

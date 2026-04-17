@@ -1,0 +1,5 @@
+../Src/main.cpp:36:14:static void GPIO::enable_clock()	4	static
+../Src/main.cpp:40:14:static void GPIO::enable_moder(uint32_t)	16	static
+../Src/main.cpp:47:14:static void GPIO::toggle(uint32_t)	24	static
+../Src/main.cpp:63:6:void delay()	16	static
+../Src/main.cpp:67:5:int main()	16	static

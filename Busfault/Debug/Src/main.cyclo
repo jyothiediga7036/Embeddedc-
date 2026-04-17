@@ -1,0 +1,8 @@
+../Src/main.cpp:13:6:void gpio_init()	1
+../Src/main.cpp:22:5:int main()	1
+../Src/main.cpp:40:17:void HardFault_Handler()	1
+../Src/main.cpp:46:17:void MemManage_Handler()	1
+../Src/main.cpp:53:40:void UsageFault_Handler()	1
+../Src/main.cpp:62:40:void BusFault_Handler()	1
+../Src/main.cpp:71:17:void BusFault_Handler_c(uint32_t*)	1
+../Src/main.cpp:92:17:void UsageFault_Handler_c(uint32_t*)	1

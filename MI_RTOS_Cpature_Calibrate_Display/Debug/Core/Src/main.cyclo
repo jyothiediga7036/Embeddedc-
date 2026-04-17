@@ -1,0 +1,10 @@
+../Core/Src/main.cpp:49:5:int main()	7
+../Core/Src/main.cpp:85:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:129:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:263:13:void capture_task(void*)	1
+../Core/Src/main.cpp:276:13:void calibration_task(void*)	2
+../Core/Src/main.cpp:300:13:void display_task(void*)	2
+../Core/Src/main.cpp:327:13:void alert_task(void*)	1
+../Core/Src/main.cpp:353:13:void blue_task(void*)	2
+../Core/Src/main.cpp:377:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	2
+../Core/Src/main.cpp:387:6:void Error_Handler()	1

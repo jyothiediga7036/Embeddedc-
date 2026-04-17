@@ -1,0 +1,14 @@
+../Core/Src/main.cpp:103:5:int main()	7
+../Core/Src/main.cpp:199:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:245:13:void MX_I2C1_Init()	2
+../Core/Src/main.cpp:279:13:void MX_I2S3_Init()	2
+../Core/Src/main.cpp:313:13:void MX_SPI1_Init()	2
+../Core/Src/main.cpp:351:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:458:13:void broadcast_task(void*)	1
+../Core/Src/main.cpp:467:13:void green_task(void*)	1
+../Core/Src/main.cpp:481:13:void orange_task(void*)	1
+../Core/Src/main.cpp:494:13:void red_task(void*)	1
+../Core/Src/main.cpp:507:13:void blue_task(void*)	1
+../Core/Src/main.cpp:541:6:void StartDefaultTask(void*)	1
+../Core/Src/main.cpp:562:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	2
+../Core/Src/main.cpp:579:6:void Error_Handler()	1

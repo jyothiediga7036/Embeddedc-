@@ -1,0 +1,12 @@
+#include<cstdint>
+#include"stm32f407.h"
+void init()
+{
+	RCC->AHB1ENR|=(1<<17);
+	RCC
+}
+
+int main()
+{
+	inti();
+}

@@ -1,0 +1,25 @@
+12:47:36 **** Incremental Build of configuration Debug for project Singleton_ ****
+make -j8 all 
+arm-none-eabi-g++ "../Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.cpp:6:9: error: ISO C++ forbids declaration of 'Singleton_USART3' with no type [-fpermissive]
+    6 |         Singleton_USART3()
+      |         ^~~~~~~~~~~~~~~~
+../Src/main.cpp:14:26: error: expected class-name before '(' token
+   14 |         ~Singleton_USART3()
+      |                          ^
+../Src/main.cpp:21:16: error: 'Singleton_USART3' does not name a type; did you mean 'singleton_USART3'?
+   21 |         static Singleton_USART3&  func()
+      |                ^~~~~~~~~~~~~~~~
+      |                singleton_USART3
+../Src/main.cpp: In member function 'int singleton_USART3::Singleton_USART3()':
+../Src/main.cpp:10:36: error: 'pin' was not declared in this scope
+   10 |                 GPIOD->MODER&=~(3<<pin*2);
+      |                                    ^~~
+../Src/main.cpp:13:9: warning: no return statement in function returning non-void [-Wreturn-type]
+   13 |         }
+      |         ^
+make: *** [Src/subdir.mk:29: Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+12:47:37 Build Failed. 5 errors, 1 warnings. (took 119ms)
+

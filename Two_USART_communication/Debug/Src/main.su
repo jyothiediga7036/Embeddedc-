@@ -1,0 +1,5 @@
+../Src/main.cpp:4:6:void delay()	16	static
+../Src/main.cpp:8:6:void init()	4	static
+../Src/main.cpp:53:9:uint8_t read_usart2()	8	static
+../Src/main.cpp:60:6:void write_usart3(uint8_t)	16	static
+../Src/main.cpp:78:5:int main()	8	static

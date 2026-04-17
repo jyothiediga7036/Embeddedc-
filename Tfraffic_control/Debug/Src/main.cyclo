@@ -1,0 +1,7 @@
+../Src/main.cpp:8:14:static void timer::timer_init()	1
+../Src/main.cpp:19:14:static void timer::gpio_inti()	2
+../Src/main.cpp:28:14:static void timer::traffic_control()	7
+../Src/main.cpp:66:17:void TIM2_IRQHandler()	2
+../Src/main.cpp:77:14:static void external::external_init()	1
+../Src/main.cpp:98:17:void EXTI0_IRQHandler()	2
+../Src/main.cpp:107:5:int main()	4

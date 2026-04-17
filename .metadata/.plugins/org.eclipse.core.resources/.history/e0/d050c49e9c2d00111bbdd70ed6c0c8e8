@@ -1,0 +1,54 @@
+#include<cstdint>
+#include"stm32f407.h"
+void init();
+void USART3_write(uint8_t);
+void delay(int );
+int main()
+{
+	init();
+	while(1)
+	{
+		USART3_write('J');
+		delay(500);
+	}
+}
+void init()
+{
+	RCC->APB1ENR|=(1<<18);  // enable clock of usart
+	RCC->AHB1ENR|=(1<<2);  // enable clock of portc
+
+	GPIOC->MODER&=~(3<<20);  //clear  portc 10 pin
+	GPIOC->MODER|=(2<<20); //select alternate function pin 10;
+
+	GPIOC->MODER&=~(3<<22);  // clear portc 11 pin;
+	GPIOC->MODER|=(2<<22); //select  alternative function pin 11;
+
+	GPIOC->AFR[1]&=~(0xF<<8);  //  clear the alternative function pin 10;
+	GPIOC->AFR[1]|=(0x7<<8);   // set to af7
+
+	GPIOC->AFR[1]&=~(oxF<<12);  // clear the alternative function pin 11;
+	GPIOC->AFR[1]|=(ox7<<12);  //set to af7
+
+
+	USART3->BRR|=0x683;
+	USART3->CR1|=(1<<2);  // enable receiver
+	USART3->CR1|=(1<<3); // enable transmission
+	USART3->CR1|=(1<<13);
+
+}
+void USART3_write(uint8_t ch)
+{
+	while(!(USART3->SR&(1<<7)));   // // TXE =0 while(!0) - while loop(true)
+    //TXE=1 Data in DR register will be given to shift register
+
+	USART3->DR=ch;// new data will be loaded to DR
+
+	while(!(USART3->SR&(1<<6)));// Wait until transmission complete  // TC=0 while(!0) while(T) waiting
+
+}
+
+void delay(int n)
+{
+    for (; n > 0; n--)
+        for (volatile int i = 0; i < 2000; i++);
+}

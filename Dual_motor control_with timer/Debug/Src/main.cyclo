@@ -1,0 +1,8 @@
+../Src/main.cpp:9:14:static void motor::EXTI3_init()	1
+../Src/main.cpp:27:14:static void motor::EXTI4_init()	1
+../Src/main.cpp:45:14:static void motor::TIM2_init()	1
+../Src/main.cpp:67:14:static void motor::GPIO_init()	1
+../Src/main.cpp:81:17:void EXTI3_IRQHandler()	2
+../Src/main.cpp:90:17:void EXTI4_IRQHandler()	2
+../Src/main.cpp:99:17:void TIM2_IRQHandler()	2
+../Src/main.cpp:111:5:int main()	3

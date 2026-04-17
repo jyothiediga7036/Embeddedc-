@@ -1,0 +1,98 @@
+#include<cstdint>
+#include"stm32f407.h"
+volatile uint32_t button_pressed=0;
+
+void delay()
+{
+	for(volatile uint32_t i=0;i<500000;i++);
+}
+void EXTI_init()
+{
+	RCC->APB2ENR |= (1 << 14);  // SYSCFG
+	RCC->AHB1ENR|=(1<<1);  //gpiob
+	RCC->AHB1ENR|=(1<<3);  // gpiod
+	//RCC->AHB1ENR|=(1<<0);  // gpioa
+
+	GPIOB->MODER &= ~(3 << (1 * 2));
+    GPIOB->PUPDR &= ~(3 << (1 * 2));
+    GPIOB->PUPDR |=  (2 << (1 * 2));  // Pull-down
+
+    SYSCFG->EXTICR[0]&=~(0xf<<4);
+    SYSCFG->EXTICR[0]|=(1<<4);    //PB1
+
+    EXTI->IMR|=(1<<1);
+    EXTI->RTSR|=(1<<1);
+
+    volatile uint32_t*piser=((volatile uint32_t*)(0xE000E100)); // NVIC_ISER
+        *piser|=(1<<7);  // NVIC_ISER|=(1<<7);
+}
+extern "C" void EXTI1_IRQHandler(void)
+{
+    if (EXTI->PR & (1 << 1))  // / test triggered occur or not 1-> occur 0-> not occure
+    {
+        button_pressed=1;
+
+        EXTI->PR |= (1 << 1); // Clear pending
+    }
+}
+class gpio
+{
+public:
+	void led_init()
+	{
+		//GPIOA->MODER&=~(3<<0);
+		for(int i=12;i<=15;i++)
+		{
+			GPIOD->MODER&=~(3<<(i*2));
+			GPIOD->MODER|=(1<<(i*2));
+		}
+	}
+	void led_on()
+	{
+		GPIOD->ODR|=(1<<12);
+		GPIOD->ODR|=(1<<13);
+		GPIOD->ODR|=(1<<14);
+		GPIOD->ODR|=(1<<15);
+
+	}
+	void led_off()
+	{
+		GPIOD->ODR&=~(1<<12);
+		GPIOD->ODR&=~(1<<13);
+		GPIOD->ODR&=~(1<<14);
+		GPIOD->ODR&=~(1<<15);
+
+	}
+
+};
+int main()
+{
+	gpio g;
+	g.led_init();
+	EXTI_init();
+	/*while(1)
+	{
+		if(button_pressed)
+		{
+			button_pressed=0;
+			g.led_on();
+			delay();
+			g.led_off();
+
+		}
+	}*/
+	while(1)
+	{
+	    if(GPIOB->IDR & (1<<1))
+	    {
+	        GPIOD->ODR |= (1<<12);
+	        delay();
+	    }
+	    else
+	    {
+	        GPIOD->ODR &= ~(1<<12);
+	        delay();
+	    }
+	}
+
+}

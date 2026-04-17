@@ -1,0 +1,15 @@
+../Src/main.cpp:41:5:int main()	40	static
+../Src/main.cpp:22:15:void __tcf_0()	8	static
+../Src/main.cpp:20:15:static GPIO<pin>& GPIO<pin>::instant() [with long unsigned int pin = 13]	8	static,ignoring_inline_asm
+../Src/main.cpp:22:15:void __tcf_1()	8	static
+../Src/main.cpp:20:15:static GPIO<pin>& GPIO<pin>::instant() [with long unsigned int pin = 14]	8	static,ignoring_inline_asm
+../Src/main.cpp:25:7:void GPIO<pin>::enable_moder() [with long unsigned int pin = 13]	16	static
+../Src/main.cpp:25:7:void GPIO<pin>::enable_moder() [with long unsigned int pin = 14]	16	static
+../Src/main.cpp:31:7:void GPIO<pin>::on() [with long unsigned int pin = 13]	16	static
+../Src/main.cpp:35:7:void GPIO<pin>::off() [with long unsigned int pin = 13]	16	static
+../Src/main.cpp:31:7:void GPIO<pin>::on() [with long unsigned int pin = 14]	16	static
+../Src/main.cpp:35:7:void GPIO<pin>::off() [with long unsigned int pin = 14]	16	static
+../Src/main.cpp:6:2:GPIO<pin>::GPIO() [with long unsigned int pin = 13]	16	static
+../Src/main.cpp:11:2:GPIO<pin>::~GPIO() [with long unsigned int pin = 13]	16	static
+../Src/main.cpp:6:2:GPIO<pin>::GPIO() [with long unsigned int pin = 14]	16	static
+../Src/main.cpp:11:2:GPIO<pin>::~GPIO() [with long unsigned int pin = 14]	16	static

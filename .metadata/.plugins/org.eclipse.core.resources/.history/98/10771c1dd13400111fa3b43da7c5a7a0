@@ -1,0 +1,140 @@
+#include"stm32f407.h"
+#include<cstdint>
+class observer
+{
+public:
+	virtual void button_pressed_status()=0;
+};
+class subject
+{
+int button_pressed;
+observer*obj[2];
+	public:
+	void init()
+	{
+		RCC->AHB1ENR |= (1 << 0);   // GPIOA
+		RCC->APB2ENR |= (1 << 14);  // SYSCFG
+			GPIOA->MODER &= ~(3 << (0 * 2));
+			GPIOA->PUPDR &= ~(3 << (0 * 2));
+			GPIOA->PUPDR |=  (2 << (0 * 2));
+			SYSCFG->EXTICR[0] &= ~(0xF << 0);  // 0000 = PA0
+			EXTI->RTSR |= (1 << 0);
+			EXTI->IMR |= (1 << 0);
+			volatile uint32_t*piser=((volatile uint32_t*)(0xE000E100)); // NVIC_ISER
+			*piser|=(1<<6);
+			RCC->AHB1ENR |= (1 << 3);   // Enable GPIOD clock
+			GPIOD->MODER &= ~(3 << (12 * 2));
+			GPIOD->MODER |=  (1 << (12 * 2));  // Output mode
+			GPIOD->ODR &= ~(1 << 12); // LED OFF
+		}
+		void status()
+		{
+			if(button_pressed)
+			{
+				GPIOD->ODR|=(1<<12);
+				delay();
+				GPIOD->ODR&=~(1<<12);
+				button_pressed=0;
+			}
+		}
+		void delay()
+		{
+			for(volatile uint32_t i=0;i<50000;i++);
+		}
+};
+class button:public observer
+{
+	subject*s;
+public:
+	void button_pressed_status()
+	{
+
+	}
+};
+extern "C" void EXTI0_IRQHandler(void)
+{
+    if (EXTI->PR & (1 << 0))  // / test triggered occur or not 1-> occur 0-> not occure
+    {
+        GPIOD->ODR |= (1 << 12); // Toggle LED
+        Singleton::instant().button_pressed_status();
+
+        EXTI->PR |= (1 << 0); // Clear pending
+    }
+}
+int main()
+{
+	subject s;
+	s.init();
+	button b;
+	while(1)
+	{
+		b.button_pressed_status();
+	}
+}
+/*class Singleton
+{
+	int button_pressed;
+	Singleton()
+	{
+		 RCC->AHB1ENR |= (1 << 0);   // GPIOA
+		    RCC->APB2ENR |= (1 << 14);  // SYSCFG
+		    GPIOA->MODER &= ~(3 << (0 * 2));
+		    GPIOA->PUPDR &= ~(3 << (0 * 2));
+		    GPIOA->PUPDR |=  (2 << (0 * 2));
+
+		 SYSCFG->EXTICR[0] &= ~(0xF << 0);  // 0000 = PA0
+		    EXTI->RTSR |= (1 << 0);
+		    EXTI->IMR |= (1 << 0);
+		    volatile uint32_t*piser=((volatile uint32_t*)(0xE000E100)); // NVIC_ISER
+		    *piser|=(1<<6);
+		    RCC->AHB1ENR |= (1 << 3);   // Enable GPIOD clock
+		    GPIOD->MODER &= ~(3 << (12 * 2));
+		    GPIOD->MODER |=  (1 << (12 * 2));  // Output mode
+		    GPIOD->ODR &= ~(1 << 12); // LED OFF
+
+		    button_pressed=0;
+	}
+public:
+	static Singleton& instant()
+	{
+		static Singleton s;
+		return s;
+	}
+	void button_pressed_status()
+	{
+		button_pressed=1;
+	}
+	void status()
+	{
+		if(button_pressed)
+		{
+			GPIOD->ODR|=(1<<12);
+			delay();
+			GPIOD->ODR&=~(1<<12);
+			button_pressed=0;
+		}
+	}
+	void delay()
+	{
+		for(volatile uint32_t i=0;i<50000;i++);
+	}
+};
+extern "C" void EXTI0_IRQHandler(void)
+{
+    if (EXTI->PR & (1 << 0))  // / test triggered occur or not 1-> occur 0-> not occure
+    {
+        GPIOD->ODR |= (1 << 12); // Toggle LED
+        Singleton::instant().button_pressed_status();
+
+        EXTI->PR |= (1 << 0); // Clear pending
+    }
+}
+int main(void)
+{
+    auto &s=Singleton::instant();
+    while (1)
+    {
+    	s.status();
+    }
+}*/
+

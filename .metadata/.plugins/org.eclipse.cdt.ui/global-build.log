@@ -1,0 +1,13 @@
+14:15:22 **** Incremental Build of configuration Debug for project MI_RTOS_USART ****
+make -j8 all 
+arm-none-eabi-g++ "../Core/Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../USB_HOST/App -I../USB_HOST/Target -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Host_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.cpp: In function 'void MX_GPIO_Init()':
+../Core/Src/main.cpp:229:23: error: 'B1_Pin' was not declared in this scope
+  229 |   GPIO_InitStruct.Pin=B1_Pin;
+      |                       ^~~~~~
+../Core/Src/main.cpp:232:17: error: 'B1_GPIO_Port' was not declared in this scope; did you mean 'SWO_GPIO_Port'?
+  232 |   HAL_GPIO_Init(B1_GPIO_Port,&GPIO_InitStruct);
+      |                 ^~~~~~~~~~~~
+      |                 SWO_GPIO_Port
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.

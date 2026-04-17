@@ -1,0 +1,61 @@
+#include<cstdint>
+#include"stm32f407.h"
+class charger;
+class mobile
+{
+	int voltage;
+	int resistance;
+public:
+	mobile(int v=0,int r=0)
+	{
+		voltage=v;
+		resistance=r;
+	}
+	void gpio_init()
+	{
+		RCC->AHB1ENR|=(1<<0);
+		RCC->AHB1ENR|=(1<<3);
+
+		GPIOA->MODER&=~(3<<0);
+		GPIOD->MODER&=~(3<<24);
+		GPIOD->MODER&=~(3<<28);
+		GPIOD->MODER|=(1<<24);
+		GPIOD->MODER|=(1<<28);
+
+	}
+	friend class charger;
+};
+class charger
+{
+	float current;
+public:
+	void status(mobile&obj)
+	{
+		if(GPIOA->IDR&1)
+		{
+			currrent=obj.voltage/obj.resistance;
+			if(current>5)
+			{
+				GPIOD->ODR|=(1<<12);
+				for(volatile uint32_t i=0;i<500000;i++);
+			}
+			else
+			{
+				GPIOD->ODR|=(1<<14);
+				for(volatile uint32_t i=0;i<500000;i++);
+			}
+		}
+	}
+};
+int main()
+{
+	mobile b(240,24);
+	mobile b1(120,30);
+	b.gpio_init();
+	charger c;
+	while(1)
+	{
+		c.status(b);
+		c.status(b1);
+	}
+}

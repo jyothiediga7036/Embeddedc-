@@ -1,0 +1,5 @@
+../Src/main.cpp:8:5:int main()	8	static
+../Src/main.cpp:19:6:void USART2_init()	4	static
+../Src/main.cpp:47:6:void USART2_write(uint8_t)	16	static
+../Src/main.cpp:54:6:void USART_string(const char*)	16	static
+../Src/main.cpp:72:6:void delayMs(int)	24	static

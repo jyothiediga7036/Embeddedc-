@@ -1,0 +1,5 @@
+../Src/main.cpp:41:5:LED::LED(GPIO_RegDef_t*, uint32_t)	1
+../Src/main.cpp:48:10:void LED::on()	1
+../Src/main.cpp:53:10:void LED::off()	1
+../Src/main.cpp:58:10:void LED::toggle()	1
+../Src/main.cpp:63:5:int main()	3

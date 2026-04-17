@@ -1,0 +1,8 @@
+../Core/Src/main.cpp:80:5:int main()	4
+../Core/Src/main.cpp:147:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:191:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:325:13:void led_green_handler(void*)	1
+../Core/Src/main.cpp:341:13:void led_orange_handler(void*)	1
+../Core/Src/main.cpp:357:13:void led_red_handler(void*)	1
+../Core/Src/main.cpp:384:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	2
+../Core/Src/main.cpp:401:6:void Error_Handler()	1

@@ -1,0 +1,5 @@
+../Src/main.cpp:10:5:timer::timer()	24	static
+../Src/main.cpp:44:17:void TIM2_IRQHandler()	4	static
+../Src/main.cpp:60:5:sensor::sensor(float)	16	static
+../Src/main.cpp:65:10:void sensor::read_data()	16	static
+../Src/main.cpp:77:5:int main()	16	static

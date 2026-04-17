@@ -1,0 +1,22 @@
+../Src/main.cpp:26:18:static auto& RCC::AHB1ENR()	1
+../Src/main.cpp:150:6:void delay()	2
+../Src/main.cpp:161:5:int main()	1
+../Src/main.cpp:9:36:static volatile uint32_t& Register<address>::value() [with unsigned int address = 1073887280]	1
+../Src/main.cpp:125:5:LED<GPIO_PIN>::LED() [with GPIO_PIN = GPIO<GPIO_Port<1073876992>, 12>]	1
+../Src/main.cpp:141:10:void LED<GPIO_PIN>::toggle() [with GPIO_PIN = GPIO<GPIO_Port<1073876992>, 12>]	1
+../Src/main.cpp:73:17:static void GPIO<Port, pin>::enable_clock() [with Port = GPIO_Port<1073876992>; unsigned char pin = 12]	1
+../Src/main.cpp:38:18:static auto& GPIO_Port<base>::MODER() [with unsigned int base = 1073876992]	1
+../Src/main.cpp:39:18:static auto& GPIO_Port<base>::OTYPER() [with unsigned int base = 1073876992]	1
+../Src/main.cpp:41:18:static auto& GPIO_Port<base>::PUPDR() [with unsigned int base = 1073876992]	1
+../Src/main.cpp:79:17:static void GPIO<Port, pin>::set_output() [with Port = GPIO_Port<1073876992>; unsigned char pin = 12]	1
+../Src/main.cpp:109:17:static void GPIO<Port, pin>::toggle() [with Port = GPIO_Port<1073876992>; unsigned char pin = 12]	2
+../Src/main.cpp:9:36:static volatile uint32_t& Register<address>::value() [with unsigned int address = 1073876992]	1
+../Src/main.cpp:9:36:static volatile uint32_t& Register<address>::value() [with unsigned int address = 1073876996]	1
+../Src/main.cpp:9:36:static volatile uint32_t& Register<address>::value() [with unsigned int address = 1073877004]	1
+../Src/main.cpp:43:18:static auto& GPIO_Port<base>::ODR() [with unsigned int base = 1073876992]	1
+../Src/main.cpp:104:17:static bool GPIO<Port, pin>::read_output() [with Port = GPIO_Port<1073876992>; unsigned char pin = 12]	1
+../Src/main.cpp:44:18:static auto& GPIO_Port<base>::BSRR() [with unsigned int base = 1073876992]	1
+../Src/main.cpp:99:17:static void GPIO<Port, pin>::reset() [with Port = GPIO_Port<1073876992>; unsigned char pin = 12]	1
+../Src/main.cpp:94:17:static void GPIO<Port, pin>::set() [with Port = GPIO_Port<1073876992>; unsigned char pin = 12]	1
+../Src/main.cpp:9:36:static volatile uint32_t& Register<address>::value() [with unsigned int address = 1073877012]	1
+../Src/main.cpp:9:36:static volatile uint32_t& Register<address>::value() [with unsigned int address = 1073877016]	1

@@ -1,0 +1,3 @@
+../Src/main.cpp:7:2:GPIO::GPIO(uint32_t)	16	static
+../Src/main.cpp:21:7:void GPIO::status()	16	static
+../Src/main.cpp:33:5:int main()	16	static

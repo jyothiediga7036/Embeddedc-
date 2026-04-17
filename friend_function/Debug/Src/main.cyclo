@@ -1,0 +1,5 @@
+../Src/main.cpp:6:7:void friend_function::gpio_init()	2
+../Src/main.cpp:20:2:friend_function::friend_function()	1
+../Src/main.cpp:27:6:void delay()	2
+../Src/main.cpp:31:6:void status(friend_function&)	6
+../Src/main.cpp:68:5:int main()	1

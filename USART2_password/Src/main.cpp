@@ -1,0 +1,123 @@
+#include <cstdint>
+#include "stm32f407.h"
+#include <string>
+
+std::string s1 = "Jyothi", s2;
+
+void USART2_read_str(char *s);
+void init();
+void delay(int n);
+void USART2_write(uint8_t ch);
+void USART2_write_str(const char *s);
+uint8_t USART2_read(void);
+void USART2_PASS();
+
+int main()
+{
+    init();
+    char str[50];
+
+    while (1)
+    {
+        s2.clear();   // clear previous input
+
+        USART2_write_str("Jyothi\r\n");
+        USART2_write_str("Enter name: ");
+
+        USART2_read_str(str);
+        USART2_PASS();
+
+        USART2_write_str("\r\n");
+    }
+}
+
+void init()
+{
+    RCC->APB1ENR |= (1 << 17);  // USART2
+    RCC->AHB1ENR |= (1 << 0);   // GPIOA
+    RCC->AHB1ENR |= (1 << 3);   // GPIOD
+
+    // PA2 -> TX
+    GPIOA->MODER &= ~(3 << 4);
+    GPIOA->MODER |=  (2 << 4);
+
+    // PA3 -> RX
+    GPIOA->MODER &= ~(3 << 6);
+    GPIOA->MODER |=  (2 << 6);
+
+    GPIOA->AFR[0] &= ~(0xFU << 8);
+    GPIOA->AFR[0] |=  (7U << 8);
+
+    GPIOA->AFR[0] &= ~(0xFU << 12);
+    GPIOA->AFR[0] |=  (7U << 12);
+
+    // PD12 -> LED output
+    GPIOD->MODER &= ~(3 << 24);
+    GPIOD->MODER |=  (1 << 24);
+
+    USART2->BRR = 0x0683;       // 9600 baud @ 16 MHz
+    USART2->CR1 |= (1U << 3);   // TE
+    USART2->CR1 |= (1U << 2);   // RE
+    USART2->CR1 |= (1U << 13);  // UE
+}
+
+void delay(int n)
+{
+    for (; n > 0; n--)
+        for (volatile int i = 0; i < 2000; i++);
+}
+
+void USART2_write_str(const char *s)
+{
+    while (*s)
+    {
+        USART2_write(*s++);
+    }
+}
+
+void USART2_write(uint8_t ch)
+{
+    while (!(USART2->SR & (1U << 7)));
+    USART2->DR = ch;
+    while (!(USART2->SR & (1U << 6)));
+}
+
+uint8_t USART2_read(void)
+{
+    while (!(USART2->SR & (1U << 5)));
+    return (uint8_t)USART2->DR;
+}
+
+void USART2_read_str(char *s)
+{
+    int i = 0;
+    char read_ch;
+
+    while (1)
+    {
+        read_ch = USART2_read();
+
+        if (read_ch == '\r' || read_ch == '\n')
+        {
+            s[i] = '\0';
+            break;
+        }
+
+        s[i++] = read_ch;
+        s2 = s2 + read_ch;
+
+        USART2_write(read_ch);   // echo typed character
+    }
+}
+
+void USART2_PASS()
+{
+    if (s1 == s2)
+    {
+        GPIOD->ODR|=(1<<12);
+    }
+    else
+    {
+        GPIOD->ODR &= ~(1 << 12);
+    }
+}

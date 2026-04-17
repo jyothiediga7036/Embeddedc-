@@ -1,0 +1,31 @@
+12:54:46 **** Build of configuration Debug for project Memoryfault ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f407vgtx.d" -MT"Startup/startup_stm32f407vgtx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f407vgtx.o" "../Startup/startup_stm32f407vgtx.s"
+arm-none-eabi-g++ "../Src/main.cpp" -mcpu=cortex-m4 -std=gnu++14 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.cpp: In function 'int* fun_unauthorized(int, int)':
+../Src/main.cpp:15:15: warning: address of local variable 'z' returned [-Wreturn-local-addr]
+   15 |         return&z;
+      |               ^~
+../Src/main.cpp:14:9: note: declared here
+   14 |     int z=x/y;
+      |         ^
+../Src/main.cpp: In function 'int main()':
+../Src/main.cpp:29:14: warning: unused variable 'pCCR' [-Wunused-variable]
+   29 |    uint32_t *pCCR = (uint32_t*)0xE000ED14;
+      |              ^~~~
+arm-none-eabi-g++ -o "Memoryfault.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/mirafra/STM32CubeIDE/workspace_2.1.1/Memoryfault/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Memoryfault.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: Memoryfault.elf
+ 
+arm-none-eabi-size  Memoryfault.elf 
+arm-none-eabi-objdump -h -S Memoryfault.elf  > "Memoryfault.list"
+   text	   data	    bss	    dec	    hex	filename
+   5904	     92	   1900	   7896	   1ed8	Memoryfault.elf
+Finished building: default.size.stdout
+ 
+Finished building: Memoryfault.list
+ 
+
+12:54:47 Build Finished. 0 errors, 2 warnings. (took 178ms)
+

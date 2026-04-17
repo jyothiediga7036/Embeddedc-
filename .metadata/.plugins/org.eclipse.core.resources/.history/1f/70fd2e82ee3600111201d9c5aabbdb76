@@ -1,0 +1,11 @@
+#include<cstdint>
+#include"stm32f407.h"
+class friend_functon
+{
+public:
+
+};
+int main()
+{
+
+}

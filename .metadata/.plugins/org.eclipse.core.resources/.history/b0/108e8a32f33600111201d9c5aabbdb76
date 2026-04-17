@@ -1,0 +1,18 @@
+#include<cstdint>
+#include"stm32f407.h"
+class mobile
+{
+	int voltage;
+	int resistance;
+public:
+	mobile(int v=0,int r=0)
+	{
+		voltage=v;
+		resistance=r;
+	}
+	void gpio_init()
+	{
+		RCC->AHB1ENR|=(1<<0);
+		RCC
+	}
+};

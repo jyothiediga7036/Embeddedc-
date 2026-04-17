@@ -1,0 +1,16 @@
+#include<cstdint>
+#include"stm32f407.h"
+void init()
+{
+	RCC->APB1ENR|=(1<<17);  //usart2
+	RCC->AHB1ENR|=(1<<2); // gpioc
+	RCC->AHB1ENR|=(1<<3);  // gpiod
+
+
+
+}
+
+int main()
+{
+	inti();
+}

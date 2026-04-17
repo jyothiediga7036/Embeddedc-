@@ -1,0 +1,55 @@
+#include <stdint.h>
+#include "stm32f407.h"
+
+void USART2_Init(void);
+void GPIO_Init(void);
+
+int main(void)
+{
+    GPIO_Init();
+    USART2_Init();
+
+    while (1)
+    {
+        // Main loop does nothing
+        // All work done in interrupt
+    }
+}
+
+void GPIO_Init(void)
+{
+    RCC->AHB1ENR |= (1 << 0); // Enable GPIOA clock
+
+    // Set PA2, PA3 to Alternate Function mode
+    GPIOA->MODER &= ~(0xF << 4);
+    GPIOA->MODER |=  (0xA << 4);
+
+    GPIOA->AFR[0] &= ~(0xF << 12);   // Select AF7 (USART2)
+    GPIOA->AFR[0] |=  (0x7<<12);
+
+}
+
+void USART2_Init(void)
+{
+    RCC->APB1ENR |= (1 << 17); // Enable USART2 clock
+
+    USART2->BRR = 0x683;
+
+    USART2->CR1 |= (1 << 2);   // RE: Receiver enable
+    USART2->CR1 |= (1 << 3);   // TE: Transmitter enable
+    USART2->CR1 |= (1 << 5);   // RXNE interrupt enable
+    USART2->CR1 |= (1 << 13);  // UE: USART enable
+    volatile uint32_t*piser=((volatile uint32_t*)(0xE000E100)); // NVIC_ISER
+           *piser=(1<<38);  // NVIC_ISER|=(1<<38); Enable interrupt in NVIC  USART2_IRQ
+}
+
+/* USART2 Interrupt Handler */
+void USART2_IRQHandler(void)
+{
+    if (USART2->SR & (1 << 5)) // RXNE flag
+    {
+        char data = USART2->DR; // Read received data
+        while (!(USART2->SR & (1 << 7)));  // Wait until transmit buffer empty
+        USART2->DR = data; // Echo back
+    }
+}

@@ -1,0 +1,16 @@
+../Src/main.cpp:17:5:button::button(GPIO_TypeDef*, uint16_t)	1
+../Src/main.cpp:24:10:void button::attach(observer*)	2
+../Src/main.cpp:32:9:int button::read()	2
+../Src/main.cpp:37:10:void button::status()	3
+../Src/main.cpp:51:10:void button::notify()	2
+../Src/main.cpp:4:7:constexpr observer::observer()	1
+../Src/main.cpp:65:5:led_green::led_green(GPIO_TypeDef*, uint16_t)	1
+../Src/main.cpp:71:10:virtual void led_green::onbuttonpressed()	2
+../Src/main.cpp:91:5:led_orange::led_orange(GPIO_TypeDef*, uint16_t)	1
+../Src/main.cpp:97:10:virtual void led_orange::onbuttonpressed()	2
+../Src/main.cpp:117:5:led_red::led_red(GPIO_TypeDef*, uint16_t)	1
+../Src/main.cpp:123:10:virtual void led_red::onbuttonpressed()	2
+../Src/main.cpp:143:5:led_blue::led_blue(GPIO_TypeDef*, uint16_t)	1
+../Src/main.cpp:149:10:virtual void led_blue::onbuttonpressed()	2
+../Src/main.cpp:164:6:void GPIO_init()	2
+../Src/main.cpp:179:5:int main()	2

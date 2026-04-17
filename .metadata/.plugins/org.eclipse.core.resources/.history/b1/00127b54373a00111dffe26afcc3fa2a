@@ -1,0 +1,129 @@
+//#include "stm32f407.h"
+#include <stdint.h>
+#include "main.h"
+#include "cmsis_os.h"
+#include "usb_host.h"
+#include "task.h"
+#include "semphr.h"
+#include "FreeRTOS.h"
+
+// USART3_TX → PC10(white)
+// USART3_RX → PC11(Green)
+//Black -GND, Don't connect VCC
+// LED → PD12
+
+void USART3_init(void);
+void USART3_write(uint8_t ch);
+void USART3_write_string(const char* str);
+void LED_init(void);
+void delayMs(int);
+
+/*----------------------------------------------------------
+  MAIN
+----------------------------------------------------------*/
+int main(void)
+{
+    USART3_init();
+    LED_init();
+
+    USART3_write_string("UART Ready\r\n");
+
+    while (1)
+    {
+        // 🔹 Periodic message
+        USART3_write_string("Hello from STM32\r\n");
+        delayMs(500);
+
+        // 🔹 Check for received data
+        if (USART3->SR & (1 << 5)) // RXNE
+        {
+            uint8_t ch = USART3->DR;
+
+            // Echo back
+            USART3_write(ch);
+
+            // LED control
+            if (ch == '1') // 1 from PC , STM32 Only RX
+            {
+                GPIOD->BSRR = (1 << 12);         // LED ON
+                USART3_write_string(" -> LED ON\r\n");
+            }
+            else if (ch == '0')
+            {
+                GPIOD->BSRR = (1 << (12 + 16));  // LED OFF
+                USART3_write_string(" -> LED OFF\r\n");
+            }
+        }
+    }
+}
+
+/*----------------------------------------------------------
+  USART3 INIT
+----------------------------------------------------------*/
+void USART3_init(void)
+{
+    RCC->AHB1ENR |= (1 << 2);   // GPIOC clock
+    RCC->APB1ENR |= (1 << 18);  // USART3 clock
+
+    // PC10 → TX (AF7)
+    GPIOC->MODER &= ~(3 << 20);
+    GPIOC->MODER |=  (2 << 20);
+    GPIOC->AFR[1] &= ~(0xF << 8);
+    GPIOC->AFR[1] |=  (7 << 8);
+
+    // PC11 → RX (AF7)
+    GPIOC->MODER &= ~(3 << 22);
+    GPIOC->MODER |=  (2 << 22);
+    GPIOC->AFR[1] &= ~(0xF << 12);
+    GPIOC->AFR[1] |=  (7 << 12);
+
+    // Pull-up for RX (important)
+    GPIOC->PUPDR &= ~(3 << 22);
+    GPIOC->PUPDR |=  (1 << 22);
+
+    USART3->BRR = 0x0683; // 9600 baud @ 16 MHz
+
+    USART3->CR1 |= (1 << 3);   // TE
+    USART3->CR1 |= (1 << 2);   // RE
+    USART3->CR1 |= (1 << 13);  // UE
+}
+
+/*----------------------------------------------------------
+  WRITE ONE CHAR
+----------------------------------------------------------*/
+void USART3_write(uint8_t ch)
+{
+    while (!(USART3->SR & (1 << 7))); // TXE
+    USART3->DR = ch;
+}
+
+/*----------------------------------------------------------
+  WRITE STRING
+----------------------------------------------------------*/
+void USART3_write_string(const char* str)
+{
+    while (*str)
+    {
+        USART3_write(*str++);
+    }
+}
+
+/*----------------------------------------------------------
+  LED INIT (PD12)
+----------------------------------------------------------*/
+void LED_init(void)
+{
+    RCC->AHB1ENR |= (1 << 3); // GPIOD clock
+
+    GPIOD->MODER &= ~(3 << (12 * 2));
+    GPIOD->MODER |=  (1 << (12 * 2)); // Output
+}
+
+/*----------------------------------------------------------
+  DELAY
+----------------------------------------------------------*/
+void delayMs(int n)
+{
+    for (; n > 0; n--)
+        for (volatile int i = 0; i < 2000; i++);
+}

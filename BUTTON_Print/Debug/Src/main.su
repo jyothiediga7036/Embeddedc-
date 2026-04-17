@@ -1,0 +1,4 @@
+../Src/main.cpp:43:5:int main()	16	static
+../Src/main.cpp:8:2:print<pin>::print() [with long unsigned int pin = 12]	16	static
+../Src/main.cpp:22:7:void print<pin>::status() [with long unsigned int pin = 12]	16	static
+../Src/main.cpp:37:7:void print<pin>::delay() [with long unsigned int pin = 12]	24	static

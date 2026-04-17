@@ -1,0 +1,10 @@
+../Src/main.cpp:46:14:static void GPIO::enable_clock()	1
+../Src/main.cpp:52:14:static void GPIO::enable_moder(uint32_t)	1
+../Src/main.cpp:59:14:static void GPIO::toggle(uint32_t)	4
+../Src/main.cpp:75:6:void delay()	2
+../Src/main.cpp:79:5:int main()	1
+../Src/main.cpp:23:33:static volatile uint32_t& Register<address>::value() [with long unsigned int address = 1073887280]	1
+../Src/main.cpp:23:33:static volatile uint32_t& Register<address>::value() [with long unsigned int address = 1073875968]	1
+../Src/main.cpp:23:33:static volatile uint32_t& Register<address>::value() [with long unsigned int address = 1073872896]	1
+../Src/main.cpp:23:33:static volatile uint32_t& Register<address>::value() [with long unsigned int address = 1073872912]	1
+../Src/main.cpp:23:33:static volatile uint32_t& Register<address>::value() [with long unsigned int address = 1073875988]	1

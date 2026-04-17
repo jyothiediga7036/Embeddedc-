@@ -1,0 +1,30 @@
+#include"stm32f407.h"
+#include<cstdint>
+extern "C" void EXTI0_IRQHandler(void)
+{
+    if (EXTI->PR & (1 << 0))  // / test triggered occur or not 1-> occur 0-> not occure
+    {
+        GPIOD->ODR |= (1 << 12); // Toggle LED
+        g_button_pressed=1;
+
+        EXTI->PR |= (1 << 0); // Clear pending
+    }
+}
+class Singleton
+{
+	Singleton()
+	{
+		RCC->APB1ENR|=(1<<0);
+		TIM2->PSC=1600-1;
+		TIM2->ARR=10000-1;
+		TIM2->CNT=0;
+		TIM2->CR1|=(1<<0);
+		TIM2->UIF|=(1<<0);
+	}
+public:
+	static Singleton& instant()
+	{
+		static Singleton s;
+		return &s;
+	}
+};
