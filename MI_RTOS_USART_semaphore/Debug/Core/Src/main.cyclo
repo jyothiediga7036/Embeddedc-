@@ -1,0 +1,16 @@
+../Core/Src/main.cpp:121:5:int main()	10
+../Core/Src/main.cpp:233:6:void USART2_init()	1
+../Core/Src/main.cpp:263:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:309:13:void MX_I2C1_Init()	2
+../Core/Src/main.cpp:343:13:void MX_I2S3_Init()	2
+../Core/Src/main.cpp:377:13:void MX_SPI1_Init()	2
+../Core/Src/main.cpp:415:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:517:6:void Capture_Task(void*)	1
+../Core/Src/main.cpp:537:6:void Temp_Calib_Task(void*)	1
+../Core/Src/main.cpp:558:6:void Fuel_Calib_Task(void*)	1
+../Core/Src/main.cpp:577:6:void Display_Task(void*)	3
+../Core/Src/main.cpp:618:6:void USART2_write(uint32_t)	3
+../Core/Src/main.cpp:625:6:void USART2_print_int(int)	4
+../Core/Src/main.cpp:656:6:void StartDefaultTask(void*)	1
+../Core/Src/main.cpp:677:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	2
+../Core/Src/main.cpp:694:6:void Error_Handler()	1
