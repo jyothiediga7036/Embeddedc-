@@ -1,0 +1,7 @@
+../Core/Src/main.cpp:93:5:int main()	4
+../Core/Src/main.cpp:157:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:201:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:335:13:void producer(void*)	1
+../Core/Src/main.cpp:351:13:void consumer(void*)	5
+../Core/Src/main.cpp:387:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	2
+../Core/Src/main.cpp:404:6:void Error_Handler()	1
